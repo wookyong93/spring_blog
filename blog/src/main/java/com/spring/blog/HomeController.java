@@ -1,4 +1,4 @@
-package com.going.blog;
+package com.spring.blog;
 
 import java.text.DateFormat;
 import java.util.Date;
