@@ -17,4 +17,5 @@ public interface MemberController {
 	public ResponseEntity idCheck(@RequestParam("id") String id, HttpServletRequest request , HttpServletResponse response) throws Exception;
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ResponseEntity addMember(@ModelAttribute("member")MemberVO memberVO,HttpServletRequest request,HttpServletResponse response) throws Exception;
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

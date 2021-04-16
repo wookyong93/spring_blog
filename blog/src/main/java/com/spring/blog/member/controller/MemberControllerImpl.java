@@ -116,6 +116,16 @@ public class MemberControllerImpl implements MemberController{
 		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 		return resEnt;
 	}
+
+	@Override
+	@RequestMapping(value="/logout.do", method= {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView("redirect:/main.do");
+		session.removeAttribute("loginId");
+		return mav;
+	}
 	
 
 }
