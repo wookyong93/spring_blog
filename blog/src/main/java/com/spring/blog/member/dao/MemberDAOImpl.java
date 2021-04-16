@@ -28,4 +28,11 @@ public class MemberDAOImpl implements MemberDAO{
 		return result;
 	}
 
+	@Override
+	public int addMember(MemberVO memberVO) throws DataAccessException {
+
+		int result = sqlSession.insert("mapper.member.addMember",memberVO);
+		return result;
+	}
+
 }

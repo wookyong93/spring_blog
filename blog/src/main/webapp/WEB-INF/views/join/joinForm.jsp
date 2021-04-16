@@ -178,7 +178,7 @@
     		alert('중복체크를 해주세요');
     	}else {
     		frm.method="post";
-    		frm.action="${contextPath}/join.do";
+    		frm.action="${contextPath}/addMember.do";
     		frm.submit();
     	}
     	 //해당 조건 맞을시 해당 action 실행;

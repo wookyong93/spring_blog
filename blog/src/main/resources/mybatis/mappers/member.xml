@@ -16,12 +16,17 @@
    <select id="loginCheck" resultType="String" parameterType="memberVO">
    		<![CDATA[
    			SELECT DECODE(COUNT(*),1,'true','false') AS result 
-   			FROM t_member WHERE id=#{id} AND pwd=#{pwd}
+   			FROM blog_member WHERE id=#{id} AND pwd=#{pwd}
    		]]>
    </select> 
    <select id="idCheck" resultType="String" parameterType="String">
    	<![CDATA[
-   		SELECT DECODE(COUNT(*),0,'true','false') AS result FROM t_member WHERE id=#{id}
+   		SELECT DECODE(COUNT(*),0,'true','false') AS result FROM blog_member WHERE id=#{id}
    	]]>
    </select>
+   <insert id="addMember" parameterType="memberVO">
+   		<![CDATA[
+   			INSERT INTO blog_member(id,pwd,name,email,address) values(#{id},#{pwd},#{name},#{email},#{address})
+   		]]>
+   </insert>
    </mapper>

@@ -8,4 +8,6 @@ public interface MemberService {
 	public boolean loginCheck(MemberVO memberVO)throws DataAccessException;
 
 	public boolean idCheck(String id)throws DataAccessException;
+
+	public int addMember(MemberVO memberVO)throws DataAccessException;
 }

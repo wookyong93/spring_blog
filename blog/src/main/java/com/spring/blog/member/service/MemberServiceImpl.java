@@ -28,4 +28,11 @@ public class MemberServiceImpl implements MemberService{
 		boolean result = memberDAO.idCheck(id);
 		return result;
 	}
+
+	@Override
+	public int addMember(MemberVO memberVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		int result = memberDAO.addMember(memberVO);
+		return result;
+	}
 }

@@ -25,7 +25,7 @@
 		<td width="25%"><a href="${contextPath}/login.do">로그인</a> | <a href="${contextPath}/joinForm.do">회원가입</a></td>
 		</c:if>
 		<c:if test="${loginId != null}">
-		<td width="25%"><a href="#">로그아웃</a> | <a href="#">마이페이지</a></td>
+		<td width="25%"><a href="${contextPath}/logout.do">로그아웃</a> | <a href="#">마이페이지</a></td>
 		</c:if>
 		</tr>
 	</table>

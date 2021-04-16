@@ -93,6 +93,29 @@ public class MemberControllerImpl implements MemberController{
 		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;
 	}
+
+	@Override
+	@RequestMapping(value="/addMember.do", method=RequestMethod.POST)
+	public ResponseEntity addMember(@ModelAttribute("member")MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		int result = memberService.addMember(memberVO);
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		HttpSession session = request.getSession();
+		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
+		String message =null;
+		try {
+		if(result != 0) {
+			message="<script>alert('회원가입 성공!! "+memberVO.getId()+"님 가입을 환영합니다.');location.href='"+request.getContextPath()+"/login.do';</script>";
+		}
+		}catch(Exception e) {
+			message = "<script>alert('오류가 발생했습니다 관리자에게 문의해주세요');location.href='"+request.getContextPath()+"/main.do';</script>";
+		}
+		session.removeAttribute("okId");
+		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
+		return resEnt;
+	}
 	
 
 }
