@@ -19,11 +19,13 @@
  }
  #sidebar-left{
  	width:15%;
+ 	height:800px;
  	padding:5px;
  	float:left;
  }
  #content{
  	width: 75%;
+ 	height:80%;
  	padding:5px;
  	float:left;
  }

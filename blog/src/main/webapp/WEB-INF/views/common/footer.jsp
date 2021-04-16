@@ -7,7 +7,7 @@
 <title></title>
 <script>
 	function fn_map(){
-		window.open("map.jsp","map","width=500, height=500");
+		window.open("map.jsp","map","width=500, height=350");
 	}
 </script>
 </head>

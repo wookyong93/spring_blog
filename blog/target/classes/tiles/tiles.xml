@@ -13,7 +13,15 @@
 	
 	<definition name="home" extends="baseLayout">
       <put-attribute name="title" value="메인페이지" />
-      <put-attribute name="body" value="/WEB-INF/views/home.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
+   </definition>
+   <definition name="login" extends="baseLayout">
+      <put-attribute name="title" value="로그인 페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />
+   </definition>
+   <definition name="join" extends="baseLayout">
+   	<put-attribute name="title" value="회원가입"/>
+   	<put-attribute name="body" value="/WEB-INF/views/join/join.jsp"/>
    </definition>
 	
 </tiles-definitions>

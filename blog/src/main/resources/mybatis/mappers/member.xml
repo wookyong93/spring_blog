@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   <mapper namespace="mapper.member">
+   <resultMap type="memberVO" id="memResult">
+   		<result property="id" column="id"/>
+   		<result property="pwd" column="pwd"/>
+   		<result property="name" column="name"/>
+   		<result property="email" column="email"/>
+   		<result property="joinDate" column="joinDate"/>
+   </resultMap>
+   
+   <select id="loginCheck" resultType="String" parameterType="memberVO">
+   		<![CDATA[
+   			SELECT DECODE(COUNT(*),1,'true','false') AS result 
+   			FROM t_member WHERE id=#{id} AND pwd=#{pwd}
+   		]]>
+   </select> 
+   <select id="idCheck" resultType="String" parameterType="String">
+   	<![CDATA[
+   		SELECT DECODE(COUNT(*),0,'true','false') AS result FROM t_member WHERE id=#{id}
+   	]]>
+   </select>
+   </mapper>

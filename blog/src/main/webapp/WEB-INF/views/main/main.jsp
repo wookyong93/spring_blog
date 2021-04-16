@@ -5,8 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	input [type="text"] {
+		
+	}
+</style>
 </head>
 <body>
-
+	
+	
 </body>
 </html>
