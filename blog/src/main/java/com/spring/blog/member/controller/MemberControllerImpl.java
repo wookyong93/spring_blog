@@ -50,7 +50,7 @@ public class MemberControllerImpl implements MemberController{
 		resEnt = new ResponseEntity(message, httpHeaders, HttpStatus.OK);
 		return resEnt;
 	}
-	@RequestMapping(value="/join.do",method= {RequestMethod.POST ,RequestMethod.GET})
+	@RequestMapping(value="/joinForm.do",method= {RequestMethod.POST ,RequestMethod.GET})
 	public ModelAndView join(HttpServletRequest request, HttpServletResponse response)throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);

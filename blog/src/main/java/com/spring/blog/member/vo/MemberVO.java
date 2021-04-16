@@ -10,6 +10,13 @@ public class MemberVO {
 	private String pwd;
 	private String name;
 	private String email;
+	private String address;
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	private Date joinDate;
 	
 	
