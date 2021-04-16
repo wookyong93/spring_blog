@@ -26,6 +26,22 @@ public class MemberControllerImpl implements MemberController{
 	MemberService memberService;
 	
 	@Override
+	@RequestMapping(value="/main.do",method=RequestMethod.GET)
+	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName=(String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+	
+	@RequestMapping(value="/login.do", method= RequestMethod.GET)
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response)throws Exception{
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+		
+	}
+	@Override
 	@RequestMapping(value="/loginCheck.do" ,method=RequestMethod.POST)
 	public ResponseEntity loginCheck(@ModelAttribute("member") MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -39,7 +55,7 @@ public class MemberControllerImpl implements MemberController{
 			boolean result = memberService.loginCheck(memberVO);
 			if(result) {
 				session.setAttribute("loginId", memberVO.getId());
-				message ="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/home.do';</script>";
+				message ="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/main.do';</script>";
 			}else {
 				message ="<script>alert('로그인 실패');location.href='"+request.getContextPath()+"/login.do';</script>";
 			}
@@ -70,12 +86,13 @@ public class MemberControllerImpl implements MemberController{
 		
 		if(result) {
 			session.setAttribute("okId", id);
-			message = "<script>alert('사용가능한 아이디입니다.');location.href='"+request.getContextPath()+"/join.do';</script>";
+			message = "<script>alert('사용가능한 아이디입니다.');location.href='"+request.getContextPath()+"/joinForm.do';</script>";
 		}else {
-			message = "<script>alert('중복된 아이디 입니다.');location.href='"+request.getContextPath()+"/join.do';</script>";
+			message = "<script>alert('중복된 아이디 입니다.');location.href='"+request.getContextPath()+"/joinForm.do';</script>";
 		}
 		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;
 	}
+	
 
 }

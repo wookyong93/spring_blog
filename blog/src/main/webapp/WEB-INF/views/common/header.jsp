@@ -22,7 +22,7 @@
 		<td width="15%"><h3>blog</h3></td>
 		<td width="65%"><h1>블로그페이지</h1></td>
 		<c:if test="${loginId == null}">
-		<td width="25%"><a href="${contextPath}/login.do">로그인</a>|<a href="#">회원가입</a></td>
+		<td width="25%"><a href="${contextPath}/login.do">로그인</a> | <a href="${contextPath}/joinForm.do">회원가입</a></td>
 		</c:if>
 		<c:if test="${loginId != null}">
 		<td width="25%"><a href="#">로그아웃</a> | <a href="#">마이페이지</a></td>

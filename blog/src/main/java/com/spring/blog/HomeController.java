@@ -28,12 +28,6 @@ public class HomeController {
 		
 		return "home";
 	}
-	@RequestMapping(value="/login.do", method= RequestMethod.GET)
-	public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		return mav;
-		
-	}
+	
 	
 }

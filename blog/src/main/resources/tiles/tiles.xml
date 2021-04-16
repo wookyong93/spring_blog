@@ -11,7 +11,7 @@
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 	</definition>
 	
-	<definition name="home" extends="baseLayout">
+	<definition name="main" extends="baseLayout">
       <put-attribute name="title" value="메인페이지" />
       <put-attribute name="body" value="/WEB-INF/views/main/main.jsp" />
    </definition>
@@ -19,7 +19,7 @@
       <put-attribute name="title" value="로그인 페이지" />
       <put-attribute name="body" value="/WEB-INF/views/login/login.jsp" />
    </definition>
-   <definition name="join" extends="baseLayout">
+   <definition name="joinForm" extends="baseLayout">
    	<put-attribute name="title" value="회원가입"/>
    	<put-attribute name="body" value="/WEB-INF/views/join/joinForm.jsp"/>
    </definition>
