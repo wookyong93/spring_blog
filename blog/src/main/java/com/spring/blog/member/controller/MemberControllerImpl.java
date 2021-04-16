@@ -1,5 +1,7 @@
 package com.spring.blog.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -84,12 +86,12 @@ public class MemberControllerImpl implements MemberController{
 		
 		boolean result = memberService.idCheck(id);
 		
-		if(result) {
-			session.setAttribute("okId", id);
-			message = "<script>alert('사용가능한 아이디입니다.');location.href='"+request.getContextPath()+"/joinForm.do';</script>";
-		}else {
-			message = "<script>alert('중복된 아이디 입니다.');location.href='"+request.getContextPath()+"/joinForm.do';</script>";
-		}
+			if(result) {
+				session.setAttribute("okId", id);
+				message = "<script>alert('사용가능한 아이디입니다.');location.href='"+request.getContextPath()+"/joinForm.do';</script>";
+			}else {
+				message = "<script>alert('중복된 아이디 입니다.');location.href='"+request.getContextPath()+"/joinForm.do';</script>";
+			}
 		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;
 	}
@@ -106,25 +108,69 @@ public class MemberControllerImpl implements MemberController{
 		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
 		String message =null;
 		try {
-		if(result != 0) {
-			message="<script>alert('회원가입 성공!! "+memberVO.getId()+"님 가입을 환영합니다.');location.href='"+request.getContextPath()+"/login.do';</script>";
-		}
+			if(result != 0) {
+				message="<script>alert('회원가입 성공!! "+memberVO.getId()+"님 가입을 환영합니다.');location.href='"+request.getContextPath()+"/login.do';</script>";
+			}
 		}catch(Exception e) {
 			message = "<script>alert('오류가 발생했습니다 관리자에게 문의해주세요');location.href='"+request.getContextPath()+"/main.do';</script>";
 		}
 		session.removeAttribute("okId");
+		//회원가입 완료하면 중복체크한 아이디 필요없으므로 삭제 시켜준다.
 		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 		return resEnt;
 	}
 
 	@Override
 	@RequestMapping(value="/logout.do", method= {RequestMethod.GET,RequestMethod.POST})
+	// /logout.do 로 이동시 session에 저장된 loginId 값 삭제;
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView("redirect:/main.do");
 		session.removeAttribute("loginId");
 		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/mypage.do", method=RequestMethod.POST)
+	public ModelAndView mypage(@RequestParam("loginId")String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+			List<MemberVO> memberInfo = memberService.memberInfo(id);
+			String viewName = (String)request.getAttribute("viewName");
+			ModelAndView mav = new ModelAndView(viewName);
+			mav.addObject("memberInfo",memberInfo);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/pwdcheck.do", method=RequestMethod.GET)
+	public ModelAndView pwdcheckForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName = (String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		return mav;
+	}
+
+	@Override
+	@RequestMapping(value="/pwdchk.do", method=RequestMethod.POST)
+	public ResponseEntity pwdcheck(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		int result = memberService.pwdCheck(memberVO);
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		String message = null;
+		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
+		try {
+			if(result == 1) {
+				message = "<script>alert('비밀번호 변경 페이지로 이동합니다.');location.href='"+request.getContextPath()+"/pwdmod.do';</script>";
+			}else {
+				message = "<script>alert('비밀번호가 다릅니다.메인페이지로 이동합니다.');location.href='"+request.getContextPath()+"/main.do';</script>";
+			}
+		}catch(Exception e) {
+			message = "<script>alert('오류 발생 관리자에게 문의 하세요');location.href='"+request.getContextPath()+"/mypage.do'</script>";
+		}
+		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
+		return resEnt;
 	}
 	
 

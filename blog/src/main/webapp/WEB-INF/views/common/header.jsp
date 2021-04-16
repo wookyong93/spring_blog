@@ -10,26 +10,29 @@
 <style>
 	a{
 		text-decoration: none;
+		color:black;
 	}
 	a:hover{
 		text-decoration: none;
 	}
 </style>
 <script>
+	//로그아웃 컴펌 받고 트루일경우 /logout.do 로 이동
 	function fn_logout(){
-		var logout = confirm('정말 로그아웃하시겠습니까 ?')
+		var logout = confirm('정말 로그아웃하시겠습니까 ?');
 		if(logout==true){
 			location.href="${contextPath}/logout.do";
 		}else{
 			location.href="${contextPath}/main.do";
 		}
 	}
+	
 </script>
 </head>
 <body>
 	<table width="100%">
 		<tr align="center">
-		<td width="15%"><h3>blog</h3></td>
+		<td width="15%"><a href="${contextPath}/main.do"><h3>blog</h3></a></td>
 		<td width="65%"><h1>블로그페이지</h1></td>
 		<c:if test="${loginId == null}">
 		<td width="25%"><input type="button" value="로그인" onclick="location.href='${contextPath}/login.do'">
@@ -37,7 +40,17 @@
 		<input type="button" value="회원가입" onclick="location.href='${contextPath}/joinForm.do'"/></td>
 		</c:if>
 		<c:if test="${loginId != null}">
-		<td width="25%"><input type="button" value="로그아웃" onclick="fn_logout()"/> | <a href="#">마이페이지</a></td>
+			<td><form name="frm">
+				<input type="hidden" value="${loginId}" name="loginId"/>
+			</form>
+		<td width="25%"><input type="button" value="로그아웃" onclick="fn_logout()"/> | <input type="button" value="마이페이지" onclick ="fn_mypage()"/></td>
+		<script>
+		function fn_mypage(){
+			var frm = document.frm;
+			frm.action="${contextPath}/mypage.do";
+			frm.method="post";
+			frm.submit();
+			}</script>
 		</c:if>
 		</tr>
 	</table>

@@ -29,4 +29,14 @@
    			INSERT INTO blog_member(id,pwd,name,email,address) values(#{id},#{pwd},#{name},#{email},#{address})
    		]]>
    </insert>
+   <select id="memberInfo" parameterType="String" resultType="memberVO">
+   	<![CDATA[
+   		SELECT * FROM blog_member WHERE id=#{id}
+   	]]>
+   </select>
+   <select id="pwdCheck" parameterType="memberVO" resultType="Integer">
+  	<![CDATA[
+  		SELECT COUNT(*) AS result FROM blog_member WHERE id=#{id} AND pwd=#{pwd}
+  	]]> 
+   </select>
    </mapper>

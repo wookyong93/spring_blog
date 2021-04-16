@@ -44,7 +44,7 @@
 		<tiles:insertAttribute name="side"/>
 	</aside>
 	<section id="content">
-		<tiles:insertAttribute name="body"/>
+		<tiles:insertAttribute name="body" ignore="true"/>
 	</section>
 	<footer id="footer">
 		<tiles:insertAttribute name="footer"/>
