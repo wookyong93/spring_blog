@@ -12,11 +12,36 @@
    		<result property="contentNO" column="contentNO"/>
    </resultMap>
    
+   
+   <!-- 로그인 아이디 최근 글 가져오기 -->
    <select id="latelycontent" parameterType="String" resultType="boardVO">
    	<![CDATA[
    		SELECT * FROM (
 			SELECT * FROM blog_content WHERE id=#{id} ORDER BY contentNO DESC)
 		WHERE rownum = 1
+   	]]>
+   	</select>
+   	
+   	<!-- 로그인 ID 글목록 가져오기 -->
+   	<select id="boardList" parameterType="String" resultType="boardVO">
+   		<![CDATA[
+   			SELECT * FROM blog_content WHERE id=#{id} ORDER BY contentNO DESC
+   		]]>
+   </select>
+   
+   <!-- 개시글 페이징 기능 구현하기 -->
+  <select id="pageList" parameterType="criteria" resultType="boardVO">
+   	<![CDATA[
+   		SELECT * FROM (
+		    SELECT blog.* ,ROWNUM as rNum FROM(
+		        SELECT * FROM blog_content WHERE id=#{id} ORDER BY contentNO DESC
+		    )blog
+		) WHERE rNum BETWEEN #{pageStart} AND #{perPageNum}
+   	]]>
+   </select>
+   <select id="pageCount" parameterType="String" resultType="Integer">
+   	<![CDATA[
+   		SELECT COUNT(*) FROM blog_content WHERE id=#{id}
    	]]>
    </select>
    </mapper>
