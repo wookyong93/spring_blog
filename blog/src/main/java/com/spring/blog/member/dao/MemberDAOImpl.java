@@ -51,4 +51,11 @@ public class MemberDAOImpl implements MemberDAO{
 		return result;
 	}
 
+	@Override
+	public int modMember(MemberVO memberVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		int result = sqlSession.update("mapper.member.modMember",memberVO);
+		return result;
+	}
+
 }

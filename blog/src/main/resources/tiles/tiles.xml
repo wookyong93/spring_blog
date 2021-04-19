@@ -35,5 +35,10 @@
 		<put-attribute name="title" value="비밀번호 확인"/>
 		<put-attribute name="body" value="/WEB-INF/views/mypage/pwdcheck.jsp"/>
 	</definition>
+	<!-- 회원정보 변경 페이지 -->
+	<definition name="modmember" extends="baseLayout">
+		<put-attribute name="title" value="회원정보 변경"/>
+		<put-attribute name="body" value="/WEB-INF/views/mypage/modmember.jsp"/>
+	</definition>
 	
 </tiles-definitions>

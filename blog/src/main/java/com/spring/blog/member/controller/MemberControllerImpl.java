@@ -132,7 +132,8 @@ public class MemberControllerImpl implements MemberController{
 	}
 
 	@Override
-	@RequestMapping(value="/mypage.do", method=RequestMethod.POST)
+	@RequestMapping(value={"/mypage.do","/modmember.do"}, method= {RequestMethod.POST,RequestMethod.GET})
+	//마이페이지 화면 전달 (리스트 형태로 정보 전달)
 	public ModelAndView mypage(@RequestParam("loginId")String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			List<MemberVO> memberInfo = memberService.memberInfo(id);
 			String viewName = (String)request.getAttribute("viewName");
@@ -143,6 +144,7 @@ public class MemberControllerImpl implements MemberController{
 
 	@Override
 	@RequestMapping(value="/pwdcheck.do", method=RequestMethod.GET)
+	//회원정보 변경전 패스워드확인을 위한 페이지  
 	public ModelAndView pwdcheckForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String viewName = (String)request.getAttribute("viewName");
@@ -152,22 +154,46 @@ public class MemberControllerImpl implements MemberController{
 
 	@Override
 	@RequestMapping(value="/pwdchk.do", method=RequestMethod.POST)
-	public ResponseEntity pwdcheck(MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+	//페스워드 확인후 회원정보 페이지 이동
+	public ResponseEntity pwdcheck(@ModelAttribute("member")MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
 		int result = memberService.pwdCheck(memberVO);
+		HttpSession session = request.getSession();
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		String message = null;
 		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
 		try {
 			if(result == 1) {
-				message = "<script>alert('비밀번호 변경 페이지로 이동합니다.');location.href='"+request.getContextPath()+"/pwdmod.do';</script>";
+				message = "<script>alert('회원정보 변경 페이지로 이동합니다.');location.href='"+request.getContextPath()+"/modmember.do?loginId="+session.getAttribute("loginId")+"';</script>";
 			}else {
-				message = "<script>alert('비밀번호가 다릅니다.메인페이지로 이동합니다.');location.href='"+request.getContextPath()+"/main.do';</script>";
+				message = "<script>alert('비밀번호가 다릅니다.');location.href='"+request.getContextPath()+"/mypage.do?loginId="+session.getAttribute("loginId")+"';</script>";
 			}
 		}catch(Exception e) {
-			message = "<script>alert('오류 발생 관리자에게 문의 하세요');location.href='"+request.getContextPath()+"/mypage.do'</script>";
+			message = "<script>alert('오류 발생 관리자에게 문의 하세요');location.href='"+request.getContextPath()+"/mypage.do?loginId="+session.getAttribute("loginId")+"'</script>";
+		}
+		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
+		return resEnt;
+	}
+
+	@Override
+	@RequestMapping(value="/modMember.do", method=RequestMethod.POST)
+	public ResponseEntity modMember(@ModelAttribute("member")MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		String message = null;;
+		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
+		int result= memberService.modMember(memberVO);
+		try {
+			if(result ==1) {
+				message="<script>alert('회원정보 변경 성공');location.href='"+request.getContextPath()+"/mypage.do?loginId="+memberVO.getId()+"';</script>";
+			}
+			
+		}catch(Exception e) {
+			message="<script>alert('오류발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
 		}
 		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;

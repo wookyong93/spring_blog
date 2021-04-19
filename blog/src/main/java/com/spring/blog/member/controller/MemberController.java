@@ -21,5 +21,6 @@ public interface MemberController {
 	public ModelAndView mypage(@RequestParam("loginId")String id,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView pwdcheckForm(HttpServletRequest request,HttpServletResponse response) throws Exception;
 	public ResponseEntity pwdcheck(@ModelAttribute("member")MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity modMember(@ModelAttribute("member")MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	
 }

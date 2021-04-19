@@ -9,7 +9,7 @@
 <title>마이 페이지</title>
 <script>
 	function fn_pwdmod(){
-		var check = confirm('비밀번호를 변경하시겠습니까 ?');
+		var check = confirm('회원정보를 변경하시겠습니까 ?');
 		if(check == true){
 			location.href="${contextPath}/pwdcheck.do";
 		}
@@ -48,7 +48,7 @@
 		</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="2"><input type="button" value="비밀번호 변경" onclick="fn_pwdmod()"/> | <input type="button" value="회원정보 변경하기"/></td>
+			<td colspan="2"><input type="button" value="회원정보 변경" onclick="fn_pwdmod()"/> | <input type="button" value="뒤로가기" onclick="location.href='${contextPath}/main.do'" /></td>
 		</tr>
 	</table>
 </body>

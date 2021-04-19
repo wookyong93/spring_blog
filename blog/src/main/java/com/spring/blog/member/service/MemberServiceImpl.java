@@ -50,4 +50,11 @@ public class MemberServiceImpl implements MemberService{
 		int result = memberDAO.pwdCheck(memberVO);
 		return result;
 	}
+
+	@Override
+	public int modMember(MemberVO memberVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		int result = memberDAO.modMember(memberVO);
+		return result;
+	}
 }
