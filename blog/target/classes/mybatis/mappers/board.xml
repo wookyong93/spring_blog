@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+   <mapper namespace="mapper.board">
+   <resultMap type="boardVO" id="boardResult">
+   		<result property="id" column="id"/>
+   		<result property="title" column="title"/>
+   		<result property="content" column="content"/>
+   		<result property="writeDate" column="writeDate"/>
+   		<result property="contentNO" column="contentNO"/>
+   </resultMap>
+   
+   <select id="latelycontent" parameterType="String" resultType="boardVO">
+   	<![CDATA[
+   		SELECT * FROM (
+			SELECT * FROM blog_content WHERE id=#{id} ORDER BY contentNO DESC)
+		WHERE rownum = 1
+   	]]>
+   </select>
+   </mapper>
