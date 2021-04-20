@@ -43,5 +43,10 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return boardDAO.pageCount(id);
 	}
+	@Override
+	public int insertContent(BoardVO boardVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return boardDAO.insertContent(boardVO);
+	}
 
 }

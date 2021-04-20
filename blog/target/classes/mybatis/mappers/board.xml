@@ -34,9 +34,10 @@
    	<![CDATA[
    		SELECT * FROM (
 		    SELECT blog.* ,ROWNUM as rNum FROM(
-		        SELECT * FROM blog_content WHERE id=#{id} ORDER BY contentNO DESC
+		        SELECT * FROM blog_content WHERE id=#{id} 
+		        ORDER BY contentNO DESC , writeDate DESC
 		    )blog
-		) WHERE rNum BETWEEN #{pageStart} AND #{perPageNum}
+		) WHERE rNum BETWEEN #{rowStart} AND #{rowEnd}
    	]]>
    </select>
    <select id="pageCount" parameterType="String" resultType="Integer">
@@ -44,4 +45,10 @@
    		SELECT COUNT(*) FROM blog_content WHERE id=#{id}
    	]]>
    </select>
+   
+   <insert id="insertContent" parameterType="boardVO">
+   		<![CDATA[
+   			INSERT INTO blog_content(contentNO,title,content,id) VALUES(blog_seq.nextval,#{title},#{content},#{id})
+   		]]>
+   </insert>
    </mapper>

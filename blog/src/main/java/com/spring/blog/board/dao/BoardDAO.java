@@ -16,4 +16,6 @@ public interface BoardDAO {
 	public List<Map<String,Object>> pageList(Criteria cri) throws DataAccessException;
 	
 	public int pageCount(String id) throws DataAccessException;
+
+	public int insertContent(BoardVO boardVO) throws DataAccessException;
 }

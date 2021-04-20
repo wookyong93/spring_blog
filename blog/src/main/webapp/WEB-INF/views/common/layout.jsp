@@ -18,13 +18,13 @@
  	margin-bottom: 5px;
  }
  #sidebar-left{
- 	width:15%;
- 	height:800px;
+ 	width:20%;
+ 	height:500px;
  	padding:5px;
  	float:left;
  }
  #content{
- 	width: 75%;
+ 	width: 70%;
  	height:80%;
  	padding:5px;
  	float:left;

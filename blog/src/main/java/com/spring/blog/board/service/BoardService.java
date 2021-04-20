@@ -16,4 +16,7 @@ public interface BoardService {
 	public List<Map<String, Object>> pageList(Criteria cri) throws DataAccessException;
 	
 	public int boardCount(String id) throws DataAccessException;
+
+	public int insertContent(BoardVO boardVO) throws DataAccessException;
+
 }

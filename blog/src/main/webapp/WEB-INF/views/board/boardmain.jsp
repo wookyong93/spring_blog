@@ -43,26 +43,26 @@
 			<th colspan="2">최근 개시물</th>
 		</tr>
 	<c:if test="${empty boardMain}">
-	<tr>
-		<td>
-		<h1>아직 작성된 글이 없습니다.</h1>
-		</td>
-	</tr>
+		<tr>
+			<td>
+			<h1>아직 작성된 글이 없습니다.</h1>
+			</td>
+		</tr>
 	</c:if>
 	<c:if test="${not empty boardMain }">
-	<c:forEach var ="board" items="${boardMain}">
-	<tr>
-	<td>${board.contentNO }</td>
-	<td>${board.title }</td>
-	</tr>
-	<tr>
-	<td>${board.id}</td><td>${board.writeDate}</td>
-	<tr>
-	<td colspan="2">
-		${board.content }
-	</td>
-	</tr>
-	</c:forEach>
+		<c:forEach var ="board" items="${boardMain}">
+		<tr>
+		<td>${board.contentNO }</td>
+		<td>${board.title }</td>
+		</tr>
+		<tr>
+		<td>${board.id}</td><td>${board.writeDate}</td>
+		<tr>
+		<td colspan="2">
+			${board.content }
+		</td>
+		</tr>
+		</c:forEach>
 	</c:if>
 	</table>
 </body>

@@ -10,6 +10,9 @@
 		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 	</definition>
+	<!-- 지도표기용 -->
+	<definition name="map" template="/WEB-INF/views/common/map.jsp"/>
+
 	<!-- 메인페이지 표시 -->
 	<definition name="main" extends="baseLayout">
       <put-attribute name="title" value="메인페이지" />
@@ -44,6 +47,11 @@
 	<definition name="boardmain" extends="baseLayout">
 		<put-attribute name="title" value="블로그메인"/>
 		<put-attribute name="body" value="/WEB-INF/views/board/boardmain.jsp"/>
+	</definition>
+	
+	<definition name="writeForm" extends="baseLayout">
+		<put-attribute name="title" value="새 글쓰기"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/writeForm.jsp"/>
 	</definition>
 	
 </tiles-definitions>

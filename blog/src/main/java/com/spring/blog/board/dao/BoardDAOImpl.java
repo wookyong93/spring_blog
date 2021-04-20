@@ -41,4 +41,9 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("mapper.board.pageCount",id);
 	}
+	@Override
+	public int insertContent(BoardVO boardVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("mapper.board.insertContent",boardVO);
+	}
 }
