@@ -8,11 +8,11 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
-	a{
+	a#logo{
 		text-decoration: none;
 		color:black;
 	}
-	a:hover{
+	a#logo:hover{
 		text-decoration: none;
 	}
 </style>
@@ -32,7 +32,7 @@
 <body>
 	<table width="100%">
 		<tr align="center">
-		<td width="15%"><a href="${contextPath}/main.do"><h3>blog</h3></a></td>
+		<td width="15%"><a id="logo" href="${contextPath}/main.do"><h3>blog</h3></a></td>
 		<td width="65%"><h1>블로그페이지</h1></td>
 		<c:if test="${loginId == null}">
 		<td width="25%"><input type="button" value="로그인" onclick="location.href='${contextPath}/login.do'">

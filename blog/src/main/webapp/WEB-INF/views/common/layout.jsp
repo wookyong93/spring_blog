@@ -23,7 +23,7 @@
  	padding:5px;
  	float:left;
  }
- #content{
+ #contentbody{
  	width: 70%;
  	height:80%;
  	padding:5px;
@@ -43,7 +43,7 @@
 	<aside id="sidebar-left">
 		<tiles:insertAttribute name="side"/>
 	</aside>
-	<section id="content">
+	<section id="contentbody">
 		<tiles:insertAttribute name="body" ignore="true"/>
 	</section>
 	<footer id="footer">

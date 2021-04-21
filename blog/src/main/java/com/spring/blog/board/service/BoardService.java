@@ -19,4 +19,10 @@ public interface BoardService {
 
 	public int insertContent(BoardVO boardVO) throws DataAccessException;
 
+	public List<BoardVO> viewBoard(int contentNO) throws DataAccessException;
+
+	public int modContent(BoardVO boardVO)throws DataAccessException;
+
+	public int delContent(int contentNO)throws DataAccessException;
+
 }

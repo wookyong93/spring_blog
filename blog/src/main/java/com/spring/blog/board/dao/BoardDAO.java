@@ -18,4 +18,10 @@ public interface BoardDAO {
 	public int pageCount(String id) throws DataAccessException;
 
 	public int insertContent(BoardVO boardVO) throws DataAccessException;
+
+	public List<BoardVO> boardView(int contentNO) throws DataAccessException;
+
+	public int modContent(BoardVO boardVO) throws DataAccessException;
+
+	public int delContent(int contentNO) throws DataAccessException;
 }

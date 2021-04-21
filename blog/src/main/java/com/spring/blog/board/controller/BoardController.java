@@ -16,4 +16,7 @@ public interface BoardController {
 	public ModelAndView boardMain( @RequestParam("loginId") String id, Criteria cri,HttpServletRequest request, HttpServletResponse response ) throws Exception;
 	public ModelAndView writeForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity insertContent(@ModelAttribute("board") BoardVO boardVO ,HttpServletRequest request, HttpServletResponse response)throws Exception;
+	public ModelAndView viewForm(@RequestParam("contentNO") int contentNO,HttpServletRequest request , HttpServletResponse response) throws Exception;
+	public ResponseEntity modContent(@ModelAttribute("board")BoardVO boardVO, HttpServletRequest request,HttpServletResponse response) throws Exception;
+	public ResponseEntity delContent(@RequestParam("contentNO")int contentNO,HttpServletRequest request,HttpServletResponse response) throws Exception;
 }

@@ -51,4 +51,20 @@
    			INSERT INTO blog_content(contentNO,title,content,id) VALUES(blog_seq.nextval,#{title},#{content},#{id})
    		]]>
    </insert>
+   
+   <select id="viewBoard" parameterType="Integer" resultType="boardVO">
+   		<![CDATA[
+   			SELECT * FROM blog_content WHERE contentNO=#{contentNO}
+   		]]>
+   </select>
+   <update id="modContent" parameterType="boardVO">
+   		<![CDATA[
+   			UPDATE blog_content SET title=#{title}, content=#{content} WHERE contentNO=#{contentNO}
+   		]]>
+   </update>
+   <delete id="delContent" parameterType="Integer">
+   	<![CDATA[
+   		DELETE FROM blog_content WHERE contentNO=#{contentNO} 
+   	]]>
+   </delete>
    </mapper>

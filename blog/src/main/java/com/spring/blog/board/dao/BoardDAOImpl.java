@@ -46,4 +46,19 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.insert("mapper.board.insertContent",boardVO);
 	}
+	@Override
+	public List<BoardVO> boardView(int contentNO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.board.viewBoard",contentNO);
+	}
+	@Override
+	public int modContent(BoardVO boardVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.update("mapper.board.modContent",boardVO);
+	}
+	@Override
+	public int delContent(int contentNO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("mapper.board.delContent",contentNO);
+	}
 }

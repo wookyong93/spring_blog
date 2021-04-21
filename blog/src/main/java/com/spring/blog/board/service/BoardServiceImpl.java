@@ -48,5 +48,20 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return boardDAO.insertContent(boardVO);
 	}
+	@Override
+	public List<BoardVO> viewBoard(int contentNO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return boardDAO.boardView(contentNO);
+	}
+	@Override
+	public int modContent(BoardVO boardVO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return boardDAO.modContent(boardVO);
+	}
+	@Override
+	public int delContent(int contentNO) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return boardDAO.delContent(contentNO);
+	}
 
 }

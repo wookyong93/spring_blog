@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -77,6 +79,58 @@ public class BoardControllerImpl implements BoardController{
 			message="<script>alert('오류 발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
 		}
 			resEnt = new ResponseEntity(message, responseHeaders,HttpStatus.CREATED);
+		return resEnt;
+	}
+
+	@Override
+	@RequestMapping(value="/viewForm.do" , method=RequestMethod.GET)
+	public ModelAndView viewForm(@RequestParam("contentNO")int contentNO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		List<BoardVO> boardView = boardService.viewBoard(contentNO);
+		mav.addObject("boardView",boardView);
+		return mav;
+	}
+	
+	@Override
+	@RequestMapping(value="/modContent.do", method=RequestMethod.POST)
+	public ResponseEntity modContent(@ModelAttribute("board")BoardVO boardVO, HttpServletRequest request,HttpServletResponse response) throws Exception{
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
+		String message=null;
+		int result = boardService.modContent(boardVO);
+		try {
+			
+			message="<script>alert('수정되었습니다.');location.href='"+request.getContextPath()+"/viewForm.do?contentNO="+boardVO.getContentNO()+"';</script>";
+			
+		}catch(Exception e) {
+			message="<script>alert('오류 발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
+		}
+		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
+		return resEnt;
+	}
+
+	@Override
+	@RequestMapping(value="/delContent.do")
+	public ResponseEntity delContent(@RequestParam("contentNO")int contentNO, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		// TODO Auto-generated method stub
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
+		HttpSession session = request.getSession();
+		String message=null;
+		int reuslt = boardService.delContent(contentNO);
+		try {
+			message="<script>alert('삭제 완료되었습니다.');location.href='"+request.getContextPath()+"/boardmain.do?loginId="+session.getAttribute("loginId")+"';</script>";
+		}
+		catch(Exception e) {
+			message="<script>alert('오류 발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
+		}
+		resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;
 	}
 

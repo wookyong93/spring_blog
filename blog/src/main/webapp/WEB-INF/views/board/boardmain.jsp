@@ -8,18 +8,59 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인 보드 메인</title>
+<style>
+	textarea{
+		font-size:20px;
+		text-align:left;
+	}
+	table#bList{
+		margin:0 auto; 
+	}
+</style>
 </head>
 <body>
-	<c:if test="${not empty boardName}">
+
+	<article>
+	<table align="center">
+		<tr>
+			<th colspan="2">최근 개시물</th>
+		</tr>
+	<c:if test="${empty boardMain}">
+		<tr>
+			<td>
+			<h1>아직 작성된 글이 없습니다.</h1>
+			</td>
+		</tr>
 	</c:if>
-	<table>
+	<c:if test="${not empty boardMain }">
+		<c:forEach var ="board" items="${boardMain}">
+		<tr>
+		<td>${board.contentNO }</td>
+		<th>${board.title }</th>
+		</tr>
+		<tr>
+		<td>${board.id}</td><td>${board.writeDate}</td>
+		<tr>
+		<td colspan="2">
+			<textarea rows="15" cols="50" style="resize:none;" readonly="readonly">${board.content}
+			</textarea>
+			
+		</td>
+		</tr>
+		</c:forEach>
+	</c:if>
+	</table>
+	</article>
+
+<section>	
+	<table id="bList">
 		<c:forEach var="bList" items="${bList}" varStatus="loop">
 		<tr>
-			<td>${bList.contentNO}</td><td>${bList.title}</td><td>${bList.writeDate}</td><td>${bList.id}</td>
+			<td><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></td><td>${bList.writeDate}</td><td>${bList.id}</td>
 		</tr>
 		</c:forEach>
 	</table>
-	<table>
+	<table id="bList">
 		<tr>
 			<c:if test="${pageMaker.prev}">
 				<td>
@@ -37,33 +78,6 @@
 				</td>
 			</c:if>
 	</table>
-	
-	<table align="center">
-		<tr>
-			<th colspan="2">최근 개시물</th>
-		</tr>
-	<c:if test="${empty boardMain}">
-		<tr>
-			<td>
-			<h1>아직 작성된 글이 없습니다.</h1>
-			</td>
-		</tr>
-	</c:if>
-	<c:if test="${not empty boardMain }">
-		<c:forEach var ="board" items="${boardMain}">
-		<tr>
-		<td>${board.contentNO }</td>
-		<td>${board.title }</td>
-		</tr>
-		<tr>
-		<td>${board.id}</td><td>${board.writeDate}</td>
-		<tr>
-		<td colspan="2">
-			${board.content }
-		</td>
-		</tr>
-		</c:forEach>
-	</c:if>
-	</table>
+</section>	
 </body>
 </html>

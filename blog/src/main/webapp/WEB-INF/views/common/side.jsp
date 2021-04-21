@@ -9,7 +9,7 @@
 <title></title>
 <style>
 	
-	table{
+	table#side{
 		margin:0 auto;
 	}
 </style>
@@ -34,7 +34,7 @@
 </head>
 <body>
 	<c:if test="${loginId != ''}">
-	<table align="center" width="80%">
+	<table align="center" width="80%" id="side">
 		<tr>
 			<th> 나의 정보 </th>
 		</tr>
@@ -44,7 +44,7 @@
 	</c:if>
 	<div>
 	<P>
-		<button onclick="fn_baordmain()">나의 최신글 보러가기</button>
+		<button onclick="fn_baordmain()">게시글 보러가기</button>
 	</P>
 	<P>	
 		<button onclick="fn_insertContent()">새 글쓰기</button>
