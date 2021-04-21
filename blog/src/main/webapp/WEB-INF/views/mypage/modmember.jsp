@@ -101,6 +101,7 @@
 			<td colspan="2">
 				<input type="button" value="회원정보 수정" onclick="fn_modMember()" />
 				<input type="button" value="취소" onclick="location.href='${contextPath}/mypage.do?loginId=${loginId}'"/>
+				<input type="button" value="회원탈퇴" onclick="fn_memberDel()"/>
 			</td>
 			</tr>
 		</table>

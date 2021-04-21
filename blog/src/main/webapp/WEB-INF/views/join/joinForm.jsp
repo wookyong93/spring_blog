@@ -7,8 +7,31 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입창</title>
+<style>
+	.textfield{
+		font-size: 20px;
+		margin: 3px;
+	}
+	.nametag{
+		text-align:left;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	#jointable{
+		margin:  auto;
+	}
+	.tabletitle{
+		text-align: center;
+		font-size: 32px;
+		font-weight: bold;
+	}
+	.alerter{
+		font-size: 8px;
+	}
+	
+</style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="${contextPath}/resources/js/member.js"></script>
+<script src="${contextPath}/resources/js/member.js" ></script>
 <script>
    
     //ID 조건식 충족 여부 확인
@@ -82,61 +105,64 @@
 </head>
 <body>
 	<form name="frm">
-		<table>
+		<table id="jointable">
+			<tr class="jointr">
+				<td colspan="3"  class="tabletitle">회원가입</td>
+			</tr>
 			<tr align="center">
-				<td>ID</td>
-				<td>
+				<td width="20%" class="nametag">ID</td>
+				<td width="50%">
 				<c:if test="${okId == null}">
-				<%--중복체크된 아이디가 존재하지 않을 경우 --%>
-					<input type="text" name="id" id="id" onchange="fn_idchk()"/>
+				<%--중복체크된 아이디가 존재하지 않을 경우 --%> 
+					<input type="text"  class="textfield" name="id" id="id" onchange="fn_idchk()"/>
 					<input type="hidden" id="check" value="no"/>
 				</c:if>
 				<c:if test="${okId != null}">
 				<%--중복체크된 아이디가 존재할 경우 --%>
-				<input type="text" name="id" id="id" value="${okId}"/>
+				<input type="text"  class="textfield" name="id" id="id" value="${okId}"/>
 				<input type="hidden" id="check" value="ok"/>
 				</c:if>
 				</td>
 				
-				<td><input type="button" value="중복체크" id="idcheck" onclick="fn_idCheck()" /></td>
+				<td width="20%"><input type="button" value="중복체크" id="idcheck" onclick="fn_idCheck()" /></td>
 			</tr>
 			<tr>
-				<td colspan="3"><div id="idcall"></div></td>
+				<td colspan="3"><div id="idcall" class="alerter"></div></td>
 			</tr>
-			<tr align="center">
-				<td>PW</td><td><input type="password" name="pwd" id="pwd" onchange="fn_passwordCheck()"></td>
+			<tr>
+				<td class="nametag">PW</td><td><input class="textfield" type="password" name="pwd" id="pwd" onchange="fn_passwordCheck()"></td>
 			</tr>
 				<tr>
-					<td colspan="3"><div id="pw"></div><input type="hidden" id="checkpwd" value=""/></td>
+					<td colspan="3"><div id="pw" class="alerter"></div><input type="hidden" id="checkpwd" value=""/></td>
 				</tr>
-			<tr align="center">
-				<td>PW Check</td><td><input type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()"/></td>
+			<tr>
+				<td class="nametag">PW Check</td><td><input  class="textfield" type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()"/></td>
 			</tr>
 			<tr>
-				<td colspan ="3"><div id="pwsame"></div><input type="hidden" id="checkpwdchk" value=""/></td>
-			</tr>
-			<tr align="center">
-				<td>이름</td><td><input type="text" name="name" id="name"/></td>
+				<td colspan ="3"><div id="pwsame" class="alerter"></div><input type="hidden" id="checkpwdchk" value=""/></td>
 			</tr>
 			<tr>
-				<td>E-mail</td>
+				<td class="nametag">이름</td><td><input  class="textfield" type="text" name="name" id="name"/></td>
+			</tr>
+			<tr>
+				<td class="nametag">E-mail</td>
 				<td>
-					<input type="email" name="email" id="email" onchange="fn_email()"/>
+					<input type="email" name="email" class="textfield"  id="email" onchange="fn_email()"/>
 					<input type="hidden" id="checkemail" value=""/>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="3"><div id="emailcall"></div>
+				<td colspan="3"><div id="emailcall" class="alerter"></div>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<td class="nametag">주소</td>
 				<td align="left" colspan="2">
-				<input type="text" id="postcode" placeholder="우편번호">
+				<input type="text" class="addrfield" id="postcode" placeholder="우편번호">
 				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="roadAddress" placeholder="도로명주소">
+				<input type="text" class="addrfield" id="roadAddress" placeholder="도로명주소">
 				<span id="guide" style="color:#999;display:none"></span>
-				<input type="text" id="detailAddress" placeholder="상세주소" onchange="fn_address()">
-				<input type="text" id="extraAddress" placeholder="참고항목">
+				<input type="text" class="addrfield" id="detailAddress" placeholder="상세주소" onchange="fn_address()"><br>
+				<input type="text" class="addrfield" id="extraAddress" placeholder="참고항목">
 				<input type="hidden" id="address" name="address"/>
 				</td>
 			</tr>

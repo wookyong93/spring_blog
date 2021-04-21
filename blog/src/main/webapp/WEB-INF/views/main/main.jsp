@@ -12,8 +12,46 @@
 </style>
 </head>
 <body>
-	<h1>메인페이지</h1>
-	<h3>블로그 페이지에 오신걸 환영합니다~</h3>
+	<table width="90%">
+		<tr>
+			<th colspan="3">최신글</th>
+		</tr>
+		<tr>
+			<td>
+				<table border="1" width="100%">
+					<tr>
+						<td>글제목</td>
+						<td>작성자</td>
+					</tr>
+					<tr>
+						<td colspan="2">글내용</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table border="1"  width="100%">
+					<tr>
+						<td>글제목</td>
+						<td>작성자</td>
+					</tr>
+					<tr>
+						<td colspan="2">글내용</td>
+					</tr>
+				</table>
+			</td>
+			<td>
+				<table border="1"  width="100%">
+					<tr>
+						<td>글제목</td>
+						<td>작성자</td>
+					</tr>
+					<tr>
+						<td colspan="2">글내용</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
 	
 </body>
 </html>

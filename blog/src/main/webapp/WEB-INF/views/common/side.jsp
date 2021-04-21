@@ -36,7 +36,7 @@
 	<c:if test="${loginId != ''}">
 	<table align="center" width="80%" id="side">
 		<tr>
-			<th> 나의 정보 </th>
+			<th> MY INFO </th> 
 		</tr>
 		<tr>
 			<td>${loginId}</td>

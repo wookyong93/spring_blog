@@ -64,8 +64,10 @@
     	var idcall = document.getElementById('idcall');
     	if(idRule.test(document.getElementById('id').value)){
     		idcall.innerHTML ="아이디 조건에 맞습니다."
+		
     	}else{
     		idcall.innerHTML ="아이디는 영문 +숫자 조합으로 5글자 이상 사용해야합니다.";
+		
     	}
     	//해당태그에 추가 
     }
@@ -92,10 +94,12 @@
     	var pw = document.getElementById('pw');
     	var checkpwd = document.getElementById('checkpwd');
     	if(!password.test(document.getElementById('pwd').value)){
-    		pw.innerHTML ='영어,숫자,특수문자가 1개씩 포함한 8글자 이상이어야합니다.';
+    		pw.innerHTML ="영어,숫자,특수문자가 1개씩 포함한 8글자 이상이어야합니다.";
+		
     	}else{
     		
   			pw.innerHTML ="사용가능한 비밀번호입니다";
+		
   			checkpwd.value ="ok";
     	}
     	//패스워드 확인 결과 출력
@@ -110,9 +114,11 @@
     		alert('PW를 입력해주세요');
     	}else if(pwd.value == pwdchk.value){
     		pwsame.innerHTML = "암호가 동일합니다.";
+		
     		checkpwdchk.value ="ok";
     	}else{
     		pwsame.innerHTML ="암호가 다릅니다."
+			
     	}
     }
     //주소 입력해주는 함수
@@ -131,9 +137,11 @@
     	var emailcall = document.getElementById('emailcall');
     	var checkemail = document.getElementById('checkemail');
     	if(emailRule.test(document.getElementById('email').value)){
-    		emailcall.innerHTML="사용가능한 이메일 형식입니다.";
+    		emailcall.innerHTML='사용가능한 이메일 형식입니다.';
+			
     		checkemail.value ="ok";
     	}else{
     		emailcall.innerHTML="이메일형식이 틀립니다.";
+			
     	}
     }

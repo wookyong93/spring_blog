@@ -6,6 +6,7 @@
 	<definition name="baseLayout" template="/WEB-INF/views/common/layout.jsp">
 		<put-attribute name="title" value=""/>
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+		<put-attribute name="navi" value="/WEB-INF/views/common/nav.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/views/common/side.jsp"/>
 		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
@@ -57,5 +58,10 @@
 	<definition name="viewForm" extends="baseLayout">
 		<put-attribute name="title" value="글 상세 창"/>
 		<put-attribute name="body" value="/WEB-INF/views/board/viewForm.jsp"/>
+	</definition>
+	
+	<definition name="searchContent" extends="baseLayout">
+		<put-attribute name="title" value="검색 결과창"/>
+		<put-attribute name="body" value="/WEB-INF/views/search/searchContent.jsp"/>
 	</definition>
 </tiles-definitions>

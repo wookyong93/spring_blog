@@ -8,5 +8,6 @@
    			<typeAlias type="com.spring.blog.member.vo.MemberVO" alias="memberVO"/>
    			<typeAlias type="com.spring.blog.board.vo.BoardVO" alias="boardVO"/>
    			<typeAlias type="com.spring.blog.board.vo.Criteria" alias="criteria"/>
+   			<typeAlias type="com.spring.blog.search.vo.SearchVO" alias="searchVO"/>
    		</typeAliases>
    </configuration>

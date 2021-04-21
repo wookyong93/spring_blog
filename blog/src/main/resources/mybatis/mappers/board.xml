@@ -40,31 +40,42 @@
 		) WHERE rNum BETWEEN #{rowStart} AND #{rowEnd}
    	]]>
    </select>
+   <!-- 해당아이디의 총 개시글 갯수 -->
    <select id="pageCount" parameterType="String" resultType="Integer">
    	<![CDATA[
    		SELECT COUNT(*) FROM blog_content WHERE id=#{id}
    	]]>
    </select>
-   
+   <!-- 개시글 추가 -->
    <insert id="insertContent" parameterType="boardVO">
    		<![CDATA[
    			INSERT INTO blog_content(contentNO,title,content,id) VALUES(blog_seq.nextval,#{title},#{content},#{id})
    		]]>
    </insert>
-   
+   <!-- 해당 번호 상세 글 표시 -->
    <select id="viewBoard" parameterType="Integer" resultType="boardVO">
    		<![CDATA[
    			SELECT * FROM blog_content WHERE contentNO=#{contentNO}
    		]]>
    </select>
+   <!-- 해당 게시글 수정 -->
    <update id="modContent" parameterType="boardVO">
    		<![CDATA[
    			UPDATE blog_content SET title=#{title}, content=#{content} WHERE contentNO=#{contentNO}
    		]]>
    </update>
+   <!-- 해당 게시글 삭제 -->
    <delete id="delContent" parameterType="Integer">
    	<![CDATA[
    		DELETE FROM blog_content WHERE contentNO=#{contentNO} 
    	]]>
    </delete>
+   
+   <!-- 게시글 검색 -->
+   <select id="searchContent" parameterType="searchVO" resultType="boardVO">
+		   	<![CDATA[
+		   		SELECT * FROM blog_content WHERE  ${selector} LIKE '%'||#{who}||'%'
+		   	]]>
+
+   </select>
    </mapper>
