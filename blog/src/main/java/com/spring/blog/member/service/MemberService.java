@@ -18,4 +18,6 @@ public interface MemberService {
 	public int pwdCheck(MemberVO memberVO)throws DataAccessException;
 
 	public int modMember(MemberVO memberVO)throws DataAccessException;
+
+	public void delMember(String id) throws DataAccessException;
 }

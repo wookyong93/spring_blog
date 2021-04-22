@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    <c:set var="_boardLately" value="${latelyList}"/>
+    <c:set var="hitBoard" value="${hitList}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,27 +12,19 @@
 .latelytable tr td{
 	text-align: center;
 	font-size: 18px;
+	background-color: white;
 }
 </style>
 </head>
 <body>
-	<div>
-		<h1> WELCOME BLOG PAGE!!!</h1>
-		<h3>당신 만을 위한 공간 <br>
-			당신의 일기, 생각, 메모 등 다양한 텍스트 들을 저장하고 공유할 수 있는 블로그<br>
-			이곳에 오신것을 환영합니다!
-		</h3>
-	</div>
-		<div align="center">
-		<h1>최근 게시글 목록</h1>
-	</div>
-	<c:if test="${ empty _boardLately }">
+<c:if test="${ empty hitBoard }">
 		<h1>최근 작성된 게시물이 없습니다!.<br>
 			 가입 후 첫 게시글의 주인공이 되어주세요!</h1>
-	</c:if>
-	<c:if test="${not empty _boardLately}">
-	<ul>	
-	<c:forEach var="board" items="${latelyList}">
+
+</c:if>
+<c:if test="${ not empty hitBoard }">
+<ul>
+	<c:forEach var="board" items="${hitList}">
 	<li style="float:left;margin:10px;list-style:none;">
 		<table border="1" width="300px" class="latelytable">
 				<tr>
@@ -55,7 +47,7 @@
 		</table>
 	</li>
 	</c:forEach>
-</ul>
-</c:if>	
+</ul>	
+</c:if>
 </body>
 </html>

@@ -28,7 +28,7 @@
 	<c:if test="${empty boardMain}">
 		<tr>
 			<td>
-			<h1>아직 작성된 글이 없습니다.</h1>
+			<h1>최근 작성된 게시물이 없습니다!.</h1>
 			</td>
 		</tr>
 	</c:if>
@@ -39,7 +39,7 @@
 		<th>${board.title }</th>
 		</tr>
 		<tr>
-		<td>${board.id}</td><td>${board.writeDate}</td>
+		<td>${board.id}</td><td>${board.writeDate}</td><td>${board.hit}</td>
 		<tr>
 		<td colspan="2">
 			<textarea rows="15" cols="50" style="resize:none;" readonly="readonly">${board.content}
@@ -55,11 +55,13 @@
 <section>	
 	<table id="bList">
 		<c:forEach var="bList" items="${bList}" varStatus="loop">
+		<c:set var="bId" value="${bList.id}"/>
 		<tr>
 			<td><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></td><td>${bList.writeDate}</td><td>${bList.id}</td>
 		</tr>
 		</c:forEach>
 	</table>
+	<c:if test="${loginId eq bId}">
 	<table id="bList">
 		<tr>
 			<c:if test="${pageMaker.prev}">
@@ -74,10 +76,31 @@
 			</c:forEach>
 			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
 				<td>
-					<a href="<c:url value='/boardmain.do?loginId=${logiId}&page=${pageMaker.endPage+1}'/>">next </a>
+					<a href="<c:url value='/boardmain.do?loginId=${loginId}&page=${pageMaker.endPage+1}'/>">next </a>
 				</td>
 			</c:if>
 	</table>
+	</c:if>
+	<c:if test="${loginId ne bId}">
+	<table id="bList">
+		<tr>
+			<c:if test="${pageMaker.prev}">
+				<td>
+					<a href="<c:url value='/baordmain.do?loginId=${bId}&page=${pageMaker.startPage-1}'/>">prev </a>
+				<td>
+			</c:if>
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<td>
+					<a href="<c:url value='/boardmain.do?loginId=${bId}&page=${idx}'/>">${idx}</a>
+				</td>
+			</c:forEach>
+			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				<td>
+					<a href="<c:url value='/boardmain.do?loginId=${bId}&page=${pageMaker.endPage+1}'/>">next </a>
+				</td>
+			</c:if>
+	</table>
+	</c:if>
 </section>	
 </body>
 </html>

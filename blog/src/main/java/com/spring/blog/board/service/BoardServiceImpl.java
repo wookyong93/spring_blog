@@ -15,7 +15,8 @@ import com.spring.blog.board.vo.Criteria;
 
 
 @Service("boardService")
-@Transactional
+//dataAccessExceotion 에러 발생시 롤백 처리
+@Transactional(rollbackFor = DataAccessException.class)
 public class BoardServiceImpl implements BoardService{
 	@Autowired
 	BoardDAO boardDAO;
@@ -51,6 +52,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardVO> viewBoard(int contentNO) throws DataAccessException {
 		// TODO Auto-generated method stub
+			boardDAO.hitCount(contentNO);
 		return boardDAO.boardView(contentNO);
 	}
 	@Override
@@ -62,6 +64,16 @@ public class BoardServiceImpl implements BoardService{
 	public int delContent(int contentNO) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return boardDAO.delContent(contentNO);
+	}
+	@Override
+	public List<BoardVO> allLately() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return boardDAO.allLately();
+	}
+	@Override
+	public List<BoardVO> hitList() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return boardDAO.hitList();
 	}
 
 }

@@ -25,22 +25,33 @@
 </c:if>
 <c:if test="${not empty searchList}">
 	<c:forEach var="board" items="${searchList}">
-		<c:if test="${selector == 'id' }">
+		
 		<tr>
 			<td>${board.id}</td>
+			<td><a href="${contextPath}/viewForm.do?contentNO=${board.contentNO}">${board.title}</a></td>
+			<td>${board.writeDate}</td>
+			<td>${board.hit}</td>
 		</tr>
-		</c:if>
-		<c:if test="${selector == 'content' }">
-		<tr>
-			<td>${board.content}</td>
-		</tr>
-		</c:if>
-		<c:if test="${selector == 'title' }">
-		<tr>
-			<td>${board.title}</td>
-		</tr>
-		</c:if>
+
 	</c:forEach>
+	<table>
+		<tr>
+			<c:if test="${pageMaker.prev}">
+				<td>
+					<a href="<c:url value='/searchContent.do?selector=${selector}&who=${who}&page=${pageMaker.startPage-1}'/>">prev </a>
+				<td>
+			</c:if>
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<td>
+					<a href="<c:url value='/searchContent.do?selector=${selector}&who=${who}&page=${idx}'/>">${idx}</a>
+				</td>
+			</c:forEach>
+			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
+				<td>
+					<a href="<c:url value='/searchContent.do?selector=${selector}&who=${who}&page=${pageMaker.endPage+1}'/>">next </a>
+				</td>
+			</c:if>
+	</table>
 </c:if>
 </table>
 </body>

@@ -62,6 +62,7 @@ function modContent(){
 				<tr>
 					<td>작성일</td><td><input type="text"  name="writeDate" value="${board.writeDate}" readonly="readonly"></td>
 					<td>작성자</td><td><input type="text"  name="id" value="${board.id}" readonly="readonly"></td>
+					<td>조회수</td><td>${board.hit}</td>
 				</tr>
 				<tr>
 					<td colspan="4">내용</td>
@@ -73,10 +74,11 @@ function modContent(){
 				</tr>
 			</c:forEach>
 			<tr id="mainBtn">
-				<td colspan ="4"><input type="button" value="메인으로 이동" onclick="location.href='${contextPath}/main.do'"/></td>
+				<td colspan ="4"><input type="button" value="${writeid}님 블로그 이동" onclick="location.href='${contextPath}/boardmain.do?loginId=${writeid}'"/></td>
+				<td colspan="4"><input type="button" value="홈페이지 메인" onclick="location.href='${contextPath}/main.do'"/></td>
 			</tr>
 			<tr id="firstBtn">
-				<td colspan ="4"><input type="button" value="수정" onclick="btnChange()"/><input type="button" value="삭제" onclick="fn_del()"/><input type="button" value="메인으로 이동"  onclick="location.href='${contextPath}/main.do'"/></td>
+				<td colspan ="4"><input type="button" value="수정" onclick="btnChange()"/><input type="button" value="삭제" onclick="fn_del()"/><input type="button" value="내 페이지 이동"  onclick="location.href='${contextPath}/boardmain.do?loginId=${writeid}'"/></td>
 			</tr>
 			<tr id="secondBtn">
 				<td colspan ="4"><input type="button" value="수정반영" onclick="modContent()"/><input type="reset" value="작성내용 전체 지우기"/><input type="button" value="취소" onclick="fn_page()"/></td>

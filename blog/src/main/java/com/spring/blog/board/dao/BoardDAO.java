@@ -24,4 +24,10 @@ public interface BoardDAO {
 	public int modContent(BoardVO boardVO) throws DataAccessException;
 
 	public int delContent(int contentNO) throws DataAccessException;
+	
+	public void hitCount(int ContentNO) throws DataAccessException;
+
+	public List<BoardVO> allLately() throws DataAccessException;
+
+	public List<BoardVO> hitList() throws DataAccessException;
 }

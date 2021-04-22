@@ -58,6 +58,12 @@
    			SELECT * FROM blog_content WHERE contentNO=#{contentNO}
    		]]>
    </select>
+   <!-- 조회수 조절 기능 -->
+   <update id="hitCount" parameterType="Integer">
+   		<![CDATA[
+   			UPDATE blog_content SET hit = hit+1 WHERE contentNO=#{contentNO}
+   		]]>
+   </update> 
    <!-- 해당 게시글 수정 -->
    <update id="modContent" parameterType="boardVO">
    		<![CDATA[
@@ -72,10 +78,41 @@
    </delete>
    
    <!-- 게시글 검색 -->
-   <select id="searchContent" parameterType="searchVO" resultType="boardVO">
+   <select id="searchContent" parameterType="criteria" resultType="boardVO">
 		   	<![CDATA[
-		   		SELECT * FROM blog_content WHERE  ${selector} LIKE '%'||#{who}||'%'
+	SELECT * FROM (
+		    SELECT blog.* ,ROWNUM as rNum FROM(
+		        SELECT * FROM blog_content WHERE  ${selector} LIKE '%'||#{who}||'%' ORDER BY contentNO DESC
+		    )blog
+		) WHERE rNum BETWEEN #{rowStart} AND #{rowEnd}
 		   	]]>
 
+   </select>
+   <!-- 검색글 갯수 카운팅 -->
+   <select id="searchPageCount" parameterType="criteria" resultType="Integer">
+   		<![CDATA[
+   			SELECT COUNT(*) FROM blog_content WHERE  ${selector} LIKE '%'||#{who}||'%' ORDER BY contentNO DESC
+   		]]>
+   </select>
+   
+   <!-- main 표시될 최근 게시물 3개 -->
+   <select id="allLately" resultType="boardVO">
+   		<![CDATA[
+   			SELECT * FROM (
+		    SELECT blog.* ,ROWNUM as rNum FROM(
+		        SELECT * FROM blog_content ORDER BY writeDate DESC
+		    )blog
+		) WHERE rNum BETWEEN 1 AND 6
+   		]]>
+   </select>
+   <!-- 최다 조회 게시글 3개 -->
+   <select id="hitList" resultType="boardVO">
+   		<![CDATA[
+   			SELECT * FROM (
+		    SELECT blog.* ,ROWNUM as rNum FROM(
+		        SELECT * FROM blog_content ORDER BY hit DESC
+		    )blog
+		) WHERE rNum BETWEEN 1 AND 6
+   		]]>
    </select>
    </mapper>

@@ -10,6 +10,7 @@
 <script src="${contextPath}/resources/js/member.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	
 	function fn_modMember(){
 		var frm = document.frmMod;
 		var pwd = document.getElementById('pwd');
@@ -35,6 +36,19 @@
 			frm.method="post";
 			frm.action="${contextPath}/modMember.do";
 			frm.submit();
+		}
+	}
+	
+	function fn_memberDel(){
+		var frm = document.frmMod;
+		var con = confirm('회원 탈퇴하시겠습니까?');
+		if(con==true){
+			var command = prompt('회원가입을 원할시 동일한 문구를 쳐주세요\n(회원탈퇴에 동의합니다.)');
+			if(command == '회원탈퇴에 동의합니다.'){
+			frm.method="post";
+			frm.action="${contextPath}/delMember.do";
+			frm.submit();
+			}
 		}
 	}
 </script>

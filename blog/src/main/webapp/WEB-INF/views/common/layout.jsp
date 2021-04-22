@@ -15,10 +15,10 @@ body{
 }
  #container{
  	width: 100%;
-  height: 100%;
-  position: relative;
+	height: 100%;
+	position: relative;
  }
- #container::before{
+ body::before{
  	background:url("/blog/resources/image/backgroundimg.jpg");
  	background-size:cover;
  	width:100%;
@@ -35,25 +35,36 @@ body{
  	padding-left:5px;
  	padding-right:5px;
  	padding-bottom:30px;
- 	margin-bottom: 20px;
- 	border-bottom: 3px solid #4d4d4d;
  	
  }
+ #navi{
+ 	padding: 5px; 
+ 	width: 99%;
+ 	height: 50px;
+ 	background-color:white;
+ 	margin: 2px; 
+ }
  #sidebar-left{
+ 	clear:both;
  	width:20%;
- 	height:620px;
+ 	height:600px;
  	padding:5px; 
  	float:left;
+ 	background-color: white;
+ 	margin: 2px;
  }
  #contentbody{
  	width: 70%;
  	height:80%;
  	padding:5px;
  	float:left;
+ 	background-color: white;
+ 	margin: 2px;
  }
  #footer{
  	clear:both;
  	padding:5px;
+ 	margin: 2px;
  }
  
 </style>

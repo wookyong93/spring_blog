@@ -64,4 +64,14 @@
 		<put-attribute name="title" value="검색 결과창"/>
 		<put-attribute name="body" value="/WEB-INF/views/search/searchContent.jsp"/>
 	</definition>
+
+	<definition name="hitBoard" extends="baseLayout">
+      <put-attribute name="title" value="HOT 게시물" />
+      <put-attribute name="body" value="/WEB-INF/views/main/hitBoard.jsp" />
+   </definition>
+   
+   <definition name="latelyBoard" extends="baseLayout">
+      <put-attribute name="title" value="최근 게시물" />
+      <put-attribute name="body" value="/WEB-INF/views/main/latelyBoard.jsp" />
+   </definition>
 </tiles-definitions>

@@ -17,6 +17,26 @@ public class Criteria {
 	private int perPageNum;
 	//페이지당 표시할 개시글 수
 	
+	//게시글검색에 필요한 항목
+	private String selector;
+	private String who;
+	
+	public String getSelector() {
+		return selector;
+	}
+
+	public void setSelector(String selector) {
+		this.selector = selector;
+	}
+
+	public String getWho() {
+		return who;
+	}
+
+	public void setWho(String who) {
+		this.who = who;
+	}
+
 	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 5;
@@ -61,6 +81,10 @@ public class Criteria {
 	public void setPerPageNum(int perPageNum) {
 		if (perPageNum <= 0 || perPageNum > 100) {
 			// 보여줄 게시글 갯수가 없거나 100개 이상일경우 5로 초기화
+			if(getPerPageNum() == 10) {
+				this.perPageNum = 10;
+				return;
+			}
 			this.perPageNum = 5;
 			return;
 		}

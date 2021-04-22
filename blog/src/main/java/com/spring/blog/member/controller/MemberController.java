@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.spring.blog.member.vo.MemberVO;
 
 public interface MemberController {
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity loginCheck(@ModelAttribute("member") MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView join(HttpServletRequest request, HttpServletResponse response)throws Exception;
 	public ResponseEntity idCheck(@RequestParam("id") String id, HttpServletRequest request , HttpServletResponse response) throws Exception;
@@ -22,5 +21,6 @@ public interface MemberController {
 	public ModelAndView pwdcheckForm(HttpServletRequest request,HttpServletResponse response) throws Exception;
 	public ResponseEntity pwdcheck(@ModelAttribute("member")MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ResponseEntity modMember(@ModelAttribute("member")MemberVO memberVO,HttpServletRequest request, HttpServletResponse response) throws Exception;
+	public ResponseEntity delMember(@RequestParam("id") String id, HttpServletRequest request , HttpServletResponse response) throws Exception;
 	
 }

@@ -33,6 +33,16 @@ public class BoardControllerImpl implements BoardController{
 	BoardService boardService;
 	
 	@Override
+	@RequestMapping(value={"/main.do","/latelyBoard.do"},method=RequestMethod.GET)
+	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+		String viewName=(String) request.getAttribute("viewName");
+		List<BoardVO> latelyList = boardService.allLately();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("latelyList",latelyList);
+		return mav;
+	}
+	@Override
 	@RequestMapping(value="/boardmain.do", method= {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView boardMain(@RequestParam("loginId")String id,Criteria cri, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
@@ -133,5 +143,16 @@ public class BoardControllerImpl implements BoardController{
 		resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;
 	}
-
+	
+	@Override
+	@RequestMapping(value="/hitBoard.do")
+	public ModelAndView hitboard(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		String viewName=(String) request.getAttribute("viewName");
+		List<BoardVO> hitList = boardService.hitList();
+		ModelAndView mav = new ModelAndView(viewName);
+		mav.addObject("hitList",hitList);
+		return mav;
+	}
+	
 }

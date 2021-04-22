@@ -1,28 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
-    <c:set var="_boardLately" value="${latelyList}"/>
+	<c:set var="_boardLately" value="${latelyList}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-.latelytable tr td{
-	text-align: center;
-	font-size: 18px;
-}
-</style>
 </head>
 <body>
-	<div>
-		<h1> WELCOME BLOG PAGE!!!</h1>
-		<h3>당신 만을 위한 공간 <br>
-			당신의 일기, 생각, 메모 등 다양한 텍스트 들을 저장하고 공유할 수 있는 블로그<br>
-			이곳에 오신것을 환영합니다!
-		</h3>
-	</div>
 		<div align="center">
 		<h1>최근 게시글 목록</h1>
 	</div>

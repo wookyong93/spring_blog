@@ -25,4 +25,8 @@ public interface BoardService {
 
 	public int delContent(int contentNO)throws DataAccessException;
 
+	public List<BoardVO> allLately() throws DataAccessException;
+
+	public List<BoardVO> hitList()throws DataAccessException;
+
 }

@@ -9,25 +9,30 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.spring.blog.board.vo.BoardVO;
-import com.spring.blog.search.vo.SearchVO;
+import com.spring.blog.board.vo.Criteria;
 
 @Repository("searchDAO")
 public class SearchDAOImpl implements SearchDAO{
 
 	@Autowired
-	SqlSession sqlsession;
+	SqlSession sqlSession;
 	@Autowired
-	SearchVO searchVO;
+	Criteria cri;
 	
 	
 	@Override
-	public List<BoardVO> searchContent(SearchVO searchVO) throws DataAccessException {
+	public List<BoardVO> searchContent(Criteria cri) throws DataAccessException {
 		// TODO Auto-generated method stub
 		List<BoardVO> searchList= new ArrayList<BoardVO>();
-		System.out.println(searchVO.getWho());
-		System.out.println(searchVO.getSelector());
-		searchList=sqlsession.selectList("mapper.board.searchContent",searchVO);
+		searchList=sqlSession.selectList("mapper.board.searchContent",cri);
 		return searchList;
+	}
+
+
+	@Override
+	public int pageCount(Criteria cri) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.board.searchPageCount",cri);
 	}
 
 }

@@ -51,4 +51,10 @@
    		UPDATE blog_member SET pwd=#{pwd} , name=#{name}, email=#{email}, address=#{address} WHERE id=#{id} 
    	]]>
    </update>
+   <!-- 회원 탈퇴 -->
+   <delete id="delMember" parameterType="String">
+   		<![CDATA[
+   			DELETE FROM blog_member WHERE id=#{id}
+   		]]>
+   </delete>
    </mapper>

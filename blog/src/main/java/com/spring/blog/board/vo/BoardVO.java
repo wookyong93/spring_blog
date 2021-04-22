@@ -11,6 +11,13 @@ public class BoardVO {
 	private String content;
 	private Date writeDate;
 	private int contentNO;
+	private int hit;
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 	public String getTitle() {
 		return title;
 	}

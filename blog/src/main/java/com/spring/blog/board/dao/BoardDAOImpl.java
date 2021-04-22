@@ -61,4 +61,18 @@ public class BoardDAOImpl implements BoardDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.delete("mapper.board.delContent",contentNO);
 	}
+	
+	public void hitCount(int contentNO) throws DataAccessException{
+		sqlSession.update("mapper.board.hitCount",contentNO);
+	}
+	@Override
+	public List<BoardVO> allLately() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.board.allLately");
+	}
+	@Override
+	public List<BoardVO> hitList() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("mapper.board.hitList");
+	}
 }

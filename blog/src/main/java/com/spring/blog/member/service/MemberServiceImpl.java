@@ -12,7 +12,7 @@ import com.spring.blog.member.dao.MemberDAO;
 import com.spring.blog.member.vo.MemberVO;
 
 @Service("memberService")
-@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(rollbackFor = DataAccessException.class)
 public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberDAO memberDAO;
@@ -56,5 +56,12 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		int result = memberDAO.modMember(memberVO);
 		return result;
+	}
+
+	@Override
+	public void delMember(String id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		memberDAO.delMember(id);
+		
 	}
 }

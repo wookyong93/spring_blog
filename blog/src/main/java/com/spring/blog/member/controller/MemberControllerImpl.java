@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.blog.board.service.BoardService;
 import com.spring.blog.member.service.MemberService;
 import com.spring.blog.member.vo.MemberVO;
 
@@ -26,15 +27,8 @@ public class MemberControllerImpl implements MemberController{
 	
 	@Autowired
 	MemberService memberService;
-	
-	@Override
-	@RequestMapping(value="/main.do",method=RequestMethod.GET)
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		String viewName=(String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		return mav;
-	}
+	@Autowired
+	BoardService boardService;
 	
 	@RequestMapping(value="/login.do", method= RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response)throws Exception{
@@ -191,6 +185,28 @@ public class MemberControllerImpl implements MemberController{
 			if(result ==1) {
 				message="<script>alert('회원정보 변경 성공');location.href='"+request.getContextPath()+"/mypage.do?loginId="+memberVO.getId()+"';</script>";
 			}
+			
+		}catch(Exception e) {
+			message="<script>alert('오류발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
+		}
+		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
+		return resEnt;
+	}
+
+	@Override
+	@RequestMapping(value="/delMember.do")
+	public ResponseEntity delMember(String id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+		ResponseEntity resEnt = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		String message = null;;
+		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
+		HttpSession session = request.getSession();
+		memberService.delMember(id);
+		try {	
+			
+			session.removeAttribute("loginId");
+			message="<script>alert('그 동안 이용해 주셔서 감사합니다.');location.href='"+request.getContextPath()+"/main.do';</script>";
 			
 		}catch(Exception e) {
 			message="<script>alert('오류발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";

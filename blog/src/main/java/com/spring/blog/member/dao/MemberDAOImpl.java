@@ -12,8 +12,6 @@ import com.spring.blog.member.vo.MemberVO;
 @Repository("memberDAO")
 public class MemberDAOImpl implements MemberDAO{
 	@Autowired
-	private MemberVO membervo;
-	@Autowired
 	private SqlSession sqlSession;
 	
 	@Override
@@ -56,6 +54,13 @@ public class MemberDAOImpl implements MemberDAO{
 		// TODO Auto-generated method stub
 		int result = sqlSession.update("mapper.member.modMember",memberVO);
 		return result;
+	}
+
+	@Override
+	public void delMember(String id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		sqlSession.delete("mapper.member.delMember",id);
+		
 	}
 
 }

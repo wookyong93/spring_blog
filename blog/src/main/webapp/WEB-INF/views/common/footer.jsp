@@ -16,9 +16,12 @@
 <body>
 	<table width="100%">
 		<tr align="center">
+			<td>Copyright 2021.05.01 . KWON WOO KYEONG All rights reserved</td>
+		</tr>
+		<tr align="center">
 			<td>
-				회사명 : xxxx
-				연락처 : xxxx
+				사이트 제작자 : dnrud368
+				email : dnrud368@gamil.com
 				오시는길 : <input type="button" value="지도 보기" onclick="fn_map()">
 			</td>
 		</tr>

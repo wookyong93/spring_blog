@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.spring.blog.board.vo.BoardVO;
-import com.spring.blog.search.vo.SearchVO;
+import com.spring.blog.board.vo.Criteria;
 
 public interface SearchService {
-	public List<BoardVO> searchContent(SearchVO searchVO)throws DataAccessException;
+	public List<BoardVO> searchContent(Criteria cri)throws DataAccessException;
+
+	public int pageCount(Criteria cri) throws DataAccessException;
 }
