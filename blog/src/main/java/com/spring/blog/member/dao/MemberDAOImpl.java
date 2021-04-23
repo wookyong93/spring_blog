@@ -43,9 +43,9 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public int pwdCheck(MemberVO memberVO) throws DataAccessException {
+	public String pwdCheck(MemberVO memberVO) throws DataAccessException {
 		// TODO Auto-generated method stub
-		int result = sqlSession.selectOne("mapper.member.pwdCheck",memberVO);
+		String result = sqlSession.selectOne("mapper.member.pwdCheck",memberVO);
 		return result;
 	}
 

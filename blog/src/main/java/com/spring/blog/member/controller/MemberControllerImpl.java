@@ -2,6 +2,7 @@ package com.spring.blog.member.controller;
 
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +32,9 @@ public class MemberControllerImpl implements MemberController{
 	@Autowired
 	BoardService boardService;
 	
+	@Inject
+	PasswordEncoder passwordEncoder;
+	
 	@RequestMapping(value="/login.do", method= RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request, HttpServletResponse response)throws Exception{
 		String viewName = (String) request.getAttribute("viewName");
@@ -47,8 +52,14 @@ public class MemberControllerImpl implements MemberController{
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.add("Content-Type", "text/html;charset=utf-8");
 		HttpSession session = request.getSession();
+		
+		String pwd = memberVO.getPwd();
+		String encodepwd = memberService.pwdCheck(memberVO);
+		
+		boolean result = passwordEncoder.matches(pwd,encodepwd);
+		
 		try {
-			boolean result = memberService.loginCheck(memberVO);
+			
 			if(result) {
 				session.setAttribute("loginId", memberVO.getId());
 				message ="<script>alert('로그인 성공');location.href='"+request.getContextPath()+"/boardmain.do?loginId="+memberVO.getId()+"';</script>";
@@ -95,6 +106,8 @@ public class MemberControllerImpl implements MemberController{
 	public ResponseEntity addMember(@ModelAttribute("member")MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
+		//암호화 레코드 
+		memberVO.setPwd(passwordEncoder.encode(memberVO.getPwd()));
 		int result = memberService.addMember(memberVO);
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
@@ -152,14 +165,17 @@ public class MemberControllerImpl implements MemberController{
 	public ResponseEntity pwdcheck(@ModelAttribute("member")MemberVO memberVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
-		int result = memberService.pwdCheck(memberVO);
+		String pwd = memberVO.getPwd();
+		String encodepwd = memberService.pwdCheck(memberVO);
+		boolean result = passwordEncoder.matches(pwd,encodepwd);
+		
 		HttpSession session = request.getSession();
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		String message = null;
 		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
 		try {
-			if(result == 1) {
+			if(result) {
 				message = "<script>alert('회원정보 변경 페이지로 이동합니다.');location.href='"+request.getContextPath()+"/modmember.do?loginId="+session.getAttribute("loginId")+"';</script>";
 			}else {
 				message = "<script>alert('비밀번호가 다릅니다.');location.href='"+request.getContextPath()+"/mypage.do?loginId="+session.getAttribute("loginId")+"';</script>";
@@ -180,6 +196,7 @@ public class MemberControllerImpl implements MemberController{
 		HttpHeaders responseHeaders = new HttpHeaders();
 		String message = null;;
 		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
+		memberVO.setPwd(passwordEncoder.encode(memberVO.getPwd()));
 		int result= memberService.modMember(memberVO);
 		try {
 			if(result ==1) {

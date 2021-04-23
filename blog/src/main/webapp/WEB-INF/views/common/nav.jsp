@@ -51,13 +51,12 @@
 		<tr>
 			<td>
 				<form id="searchFrm">
-					<label>게시글 검색</label>
 						<select name="selector">
 							<option value="title">제목</option>
 							<option value="content">내용</option>
 							<option value="id">아이디</option>
 						</select>
-						<input type="text"name="who" id="who"><button type="button" onclick="fn_search()">검색</button>
+						<input type="search"name="who" id="who" placeholder="게시글 검색"><button class="btn btn-info" type="button" onclick="fn_search()">검색</button>
 				</form> 
 			</td>
 		</tr>

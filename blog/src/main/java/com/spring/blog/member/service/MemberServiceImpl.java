@@ -46,8 +46,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int pwdCheck(MemberVO memberVO) throws DataAccessException {
-		int result = memberDAO.pwdCheck(memberVO);
+	public String pwdCheck(MemberVO memberVO) throws DataAccessException {
+		String result = memberDAO.pwdCheck(memberVO);
 		return result;
 	}
 

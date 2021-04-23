@@ -40,9 +40,9 @@
    	
    	<!-- 비밀번호 체크 -->
    </select>
-   <select id="pwdCheck" parameterType="memberVO" resultType="Integer">
+   <select id="pwdCheck" parameterType="memberVO" resultType="String">
   	<![CDATA[
-  		SELECT COUNT(*) AS result FROM blog_member WHERE id=#{id} AND pwd=#{pwd}
+  		SELECT pwd FROM blog_member WHERE id=#{id}
   	]]> 
    </select>
    <!-- 회원 정보 수정 -->

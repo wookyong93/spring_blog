@@ -8,6 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title"/></title>
+<link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.css">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 body{
 	padding: 0px;

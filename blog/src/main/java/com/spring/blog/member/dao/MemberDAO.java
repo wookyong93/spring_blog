@@ -15,7 +15,7 @@ public interface MemberDAO {
 
 	public List<MemberVO> memberInfo(String id)throws DataAccessException;
 
-	public int pwdCheck(MemberVO memberVO)throws DataAccessException;
+	public String pwdCheck(MemberVO memberVO)throws DataAccessException;
 
 	public int modMember(MemberVO memberVO)throws DataAccessException;
 
