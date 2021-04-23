@@ -13,13 +13,6 @@
    		<result property="joinDate" column="joinDate"/>
    </resultMap>
    
-   <!-- 로그인 체크 -->
-   <select id="loginCheck" resultType="String" parameterType="memberVO">
-   		<![CDATA[
-   			SELECT DECODE(COUNT(*),1,'true','false') AS result 
-   			FROM blog_member WHERE id=#{id} AND pwd=#{pwd}
-   		]]>
-   </select> 
    <!-- ID중복 체크 -->
    <select id="idCheck" resultType="String" parameterType="String">
    	<![CDATA[
@@ -38,7 +31,7 @@
    		SELECT * FROM blog_member WHERE id=#{id}
    	]]>
    	
-   	<!-- 비밀번호 체크 -->
+   	<!-- 시큐리티 비밀번호 체크 -->
    </select>
    <select id="pwdCheck" parameterType="memberVO" resultType="String">
   	<![CDATA[

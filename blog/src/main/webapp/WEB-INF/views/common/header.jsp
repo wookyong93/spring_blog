@@ -8,39 +8,17 @@
 <meta charset="UTF-8">
 <title></title>
 <style>
-	a#logo{
-		text-decoration: none;
-		font-size:32px;
+	.header_text{
+		padding: 100px 0px 100px;
+		text-align: center;
+		color: white;
+		
+	}
+	.header_text h1{
+		font-family:squareRoundEB,monospace;
 		font-weight:bold;
-		background-color:lightblue;
-		padding:10px;
-		color:white;
-		border-radius: 5px;
-	}
-	a#logo:hover{
-		text-decoration: none;
-	}
-	.headerTitle{
-		font-size: 32px;
-		font-style: italic;
-		font-weight: bold;
-			}
-	
-	#headerBtn{
-		width: 120px;
-		height:40px;
-		font-size: 16px;
-		background-color: transparent;
-		border: 0px;
-		outline: none;
-	}
-	#btnIcon{
-		width:20px;
-		height: 20px;
-	}
-	#headerBtn:hover{
-		border:0px;
-		color:blue;
+		font-size:50px;
+		margin-top:0
 	}
 </style>
 <script>
@@ -57,41 +35,25 @@
 </script>
 </head>
 <body>
-	<table width="100%">
-		<tr>
-		<td width="15%" align="left"><a id="logo" href="${contextPath}/main.do">Blog</a></td>
-		
-		<c:if test="${loginId == null}">
-		<td width="50%" class="headerTitle" align="center">B L O G</td>
-		<td width="40%" align="right">
-		<button id="headerBtn" onclick="location.href='${contextPath}/login.do'">
-			<img id ="btnIcon" src="${contextPath}/resources/image/login.png">로그인</button>
-		 | 
-		<button id="headerBtn" onclick="location.href='${contextPath}/joinForm.do'">
-			<img id ="btnIcon" src="${contextPath}/resources/image/signUp.png">회원가입</button>
-		</c:if>
-		<c:if test="${loginId != null}">
-			<td width="50%" class="headerTitle" align="center">${loginId}'s B L O G</td>
-			<td align="right">
-			<form name="frm">
-				<input type="hidden" value="${loginId}" name="loginId"/>
-			</form>
-		<button id="headerBtn" onclick="fn_logout()">
-			<img id ="btnIcon" src="${contextPath}/resources/image/logout.png">로그아웃</button>
-		 | 
-		 
-		 <button id="headerBtn" onclick ="fn_mypage()">
-			<img id ="btnIcon" src="${contextPath}/resources/image/mypage.png">마이페이지</button>
-		</td>
-		<script>
+
+<div class="container">
+<div class="overlay"></div>
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="header_text">
+
+		<h1>B L O G</h1>
+
+		</div>
+        </div>
+      </div>
+    </div>
+	<script>
 		function fn_mypage(){
 			var frm = document.frm;
 			frm.action="${contextPath}/mypage.do";
 			frm.method="post";
 			frm.submit();
-			}</script>
-		</c:if>
-		</tr>
-	</table>
+	}</script>
 </body>
 </html>

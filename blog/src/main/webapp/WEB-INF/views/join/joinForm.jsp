@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+    <c:set var="loginId" value="${loginId}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +34,13 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="${contextPath}/resources/js/member.js" ></script>
 <script>
-   
+   	window.onload=function(){
+   		var id = "${loginId}";
+   		if(id != ""){
+   			alert('잘못된 접근입니다.');
+   			location.href="${contextPath}/main.do";
+   		}
+   	}
     //ID 조건식 충족 여부 확인
     function fn_idchk(){
     	//ID 입력시 영문 숫자조합 필수

@@ -12,6 +12,13 @@
 <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+window.onload=function(){
+		var id = "${loginId}";
+		if(id != ""){
+			alert('잘못된 접근입니다.');
+			location.href="${contextPath}/main.do";
+		}
+	}
 	function fn_insert(){
 		var frm = document.getElementById('frm');
 		var title = document.getElementById('title');

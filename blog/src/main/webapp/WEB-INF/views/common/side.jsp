@@ -11,9 +11,6 @@
 <title></title>
 <style>
 	
-	table#side{
-		margin:0 auto;
-	}
 </style>
 <script type="text/javascript">
 	function fn_baordmain(){

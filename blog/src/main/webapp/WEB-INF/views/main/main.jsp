@@ -13,49 +13,50 @@
 	text-align: center;
 	font-size: 18px;
 }
+
+#oneform{
+	padding:5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #aaaaaa;
+}
 </style>
 </head>
 <body>
-	<div>
-		<h1> WELCOME BLOG PAGE!!!</h1>
-		<h3>당신 만을 위한 공간 <br>
-			당신의 일기, 생각, 메모 등 다양한 텍스트 들을 저장하고 공유할 수 있는 블로그<br>
-			이곳에 오신것을 환영합니다!
-		</h3>
-	</div>
-		<div align="center">
-		<h1>최근 게시글 목록</h1>
-	</div>
+	
+		<div class="post-preview" id="oneform">
+			<h1  class="post-title"> WELCOME BLOG PAGE!!!</h1>
+			<h3 class="post-subtitle">당신 만을 위한 공간 <br>
+				당신의 일기, 생각, 메모 등 <br>
+				다양한 텍스트 들을 <br>
+				 저장하고 공유할 수 있는 <br>
+				이곳에 오신것을 환영합니다!
+			</h3>
+			<h6 class="post-meta">회원가입은 상단 버튼에있습니다!<br>
+			 가입후 당신만의 글을 작성할수 있습니다.</h6>
+		 </div>
+
 	<c:if test="${ empty _boardLately }">
-		<h1>최근 작성된 게시물이 없습니다!.<br>
-			 가입 후 첫 게시글의 주인공이 되어주세요!</h1>
+		<h1 class="post-title">
+		최근 작성된 게시물이 없습니다!.<br>
+		가입 후 첫 게시글의 주인공이 되어주세요!</h1>
 	</c:if>
 	<c:if test="${not empty _boardLately}">
-	<ul>	
+	<div class="post-preview" id="oneform">
+			<h1 class="post-title">최근 게시글 목록</h1>
+	</div>	
 	<c:forEach var="board" items="${latelyList}">
-	<li style="float:left;margin:10px;list-style:none;">
-		<table border="1" width="300px" class="latelytable">
-				<tr>
-					<td colspan="4">제목</td>
-				</tr>
-				<tr>
-					<td colspan="4"><a href="${contextPath}/viewForm.do?contentNO=${board.contentNO}">${board.title }</a></td>
-				</tr>
-				<tr>
-					<td>작성자</td><td>작성일</td><td>조회수</td>
-				</tr>
-				<tr>
-					<td>${board.id }</td>
-					<td>${board.writeDate}</td>
-					<td>${board.hit }</td>
-				</tr>
-				<tr>
-					<td colspan="4">${board.content}</td>
-				</tr>
-		</table>
-	</li>
+	<div class="post-preview" id="oneform">
+		<a href="${contextPath}/viewForm.do?contentNO=${board.contentNO}">
+			<h1 class="post-title">${board.title}</h1>
+		</a>
+		<br>
+			<h5 class="post-subtitle">작성자 : ${board.id}<span style="word-spacing: 30px;"> / </span> 조회수 : ${board.hit}</h5>
+		<br>
+			<h2 class="post-meta">${board.content}</h2>
+
+	</div>
 	</c:forEach>
-</ul>
+
 </c:if>	
 </body>
 </html>

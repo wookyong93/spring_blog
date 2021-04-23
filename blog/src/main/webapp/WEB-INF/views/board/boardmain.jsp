@@ -35,6 +35,7 @@
 	</c:if>
 	<c:if test="${not empty boardMain }">
 		<c:forEach var ="board" items="${boardMain}">
+		<c:set var="writeid" value="${board.id}"/>
 		<tr>
 		<td>${board.contentNO }</td>
 		<th>${board.title }</th>

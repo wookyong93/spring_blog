@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>마이 페이지</title>
 <script>
+window.onload=function(){
+		var id = "${loginId}";
+		if(id != ""){
+			alert('잘못된 접근입니다.');
+			location.href="${contextPath}/main.do";
+		}
+	}
 	function fn_pwdmod(){
 		var check = confirm('회원정보를 변경하시겠습니까 ?');
 		if(check == true){

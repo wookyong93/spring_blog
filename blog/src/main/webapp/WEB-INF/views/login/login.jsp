@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>로그인창</title>
 <script>
+window.onload=function(){
+		var id = "${loginId}";
+		if(id != ""){
+			alert('잘못된 접근입니다.');
+			location.href="${contextPath}/main.do";
+		}
+	}
 	function fn_login(){
 		var frm = document.loginFrm
 		var id = document.getElementById("id");

@@ -5,9 +5,9 @@
 <tiles-definitions>
 	<definition name="baseLayout" template="/WEB-INF/views/common/layout.jsp">
 		<put-attribute name="title" value=""/>
+		<put-attribute name="mainNav" value="/WEB-INF/views/common/mainNav.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
-		<put-attribute name="navi" value="/WEB-INF/views/common/nav.jsp"/>
-		<put-attribute name="side" value="/WEB-INF/views/common/side.jsp"/>
+		<put-attribute name="nav" value="/WEB-INF/views/common/nav.jsp"/>
 		<put-attribute name="body" value=""/>
 		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>
 	</definition>

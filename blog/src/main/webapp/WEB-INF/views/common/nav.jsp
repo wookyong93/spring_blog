@@ -8,18 +8,44 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.navLi{
-	margin:0 auto;
-	padding :3px;
-	list-style: none;
-	float: left;
-}
-#searchBox{
-	width:600px;
-	padding: 5px;
-	float:right;
+	#selectBox{
+		width: 20%;
+		height:40px;
+		border-radius: 5px;
+		font-size: 20px;
+		padding:5px;
+		margin: 0;
+	}
+	#selectBox:focus{
+		outline: none;
+	}
+	#who{
+		width: 50%;
+		border-radius: 5px 0 0 5px;;
+		border:1px solid white;
+		font-size: 20px;
+		padding:5px;
+		margin: 0;
+	}
+	#who:focus{
+		outline: none;
+	}
+	#searchBtn{
+		width:20%;
+		margin: 0;
+		font-size: 20px;
+		padding: 5px;
+		border: 0px;
+		border-radius: 0 3px 3px 0;
+		background-color: #00CCFF;
+		border: 1px solid white;
+		color:white;
+		font-weight: bold;
+	}
+	.form-group{
+		font-family: squareRoundR;
+	}
 
-}
 </style>
 <script>
 	function fn_search(){
@@ -35,33 +61,25 @@
 		frm.submit();
 		}
 	}
+
 </script>
 </head>
 <body>
-		<ul >
-			<li class="navLi">
-			<button onclick="location.href='${contextPath}/latelyBoard.do'">최신 게시글</button>
-			</li>
-			<li class="navLi">
-			<button onclick="location.href='${contextPath}/hitBoard.do'">최다 조회수 게시글</button>
-			</li>
-		</ul>
 
-		<table id="searchBox">
-		<tr>
-			<td>
-				<form id="searchFrm">
-						<select name="selector">
-							<option value="title">제목</option>
-							<option value="content">내용</option>
-							<option value="id">아이디</option>
-						</select>
-						<input type="search"name="who" id="who" placeholder="게시글 검색"><button class="btn btn-info" type="button" onclick="fn_search()">검색</button>
-				</form> 
-			</td>
-		</tr>
-	    </table>
-
+<nav class="navbar navbar-expand-lg navbar-light" style="text-align:center;padding-top: 30px">
+	<div class="container" >
+		<form id="searchFrm" class="col-lg-12 col-md-12 mx-12">
+			<div class="form-group" >
+			<select name="selector" id="selectBox">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+				<option value="id">아이디</option>
+			</select>
+			<input type="search" name="who" id="who" placeholder="게시글 검색"><button type="button" onclick="fn_search()" id="searchBtn"><img src="${contextPath}/resources/image/search.png" id="btnIcon"> 검색</button>
+			</div>
+		</form> 
+	</div>
+</nav>
 	
 </body>
 </html>

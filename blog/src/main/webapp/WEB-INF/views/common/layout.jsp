@@ -7,88 +7,77 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 <title><tiles:insertAttribute name="title"/></title>
-<link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.css">
+<!-- 부트스트랩 코어 css -->
+<link href="${contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="${contextPath}/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<!-- fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href="${contextPath}/resources/css/clean-blog.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-body{
-	padding: 0px;
-	margin: 0px;
+	body{
+		font-family:squareRoundR;
+	}
+	header.masthead{
+		margin-bottom:0;
+	}
+	@font-face {
+	font-family: squareRoundEB;
+	src:url("/blog/resources/fonts/NanumSquareRoundEB.ttf");
+	/*제일 두꺼운 폰트체*/
+	}
+	@font-face {
+	font-family: squareRoundB;
+	src:url("/blog/resources/fonts/NanumSquareRoundB.ttf");
+	/* 두꺼운 폰트체*/
+	}
+	@font-face {
+	font-family: squareRoundR;
+	src:url("/blog/resources/fonts/NanumSquareRoundR.ttf");
+	/*제일 두꺼운 폰트체*/
+	}
+	#mainNav{
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	#main-text{
+	text-align: center;
 }
- #container{
- 	width: 100%;
-	height: 100%;
-	position: relative;
- }
- body::before{
- 	background:url("/blog/resources/image/backgroundimg.jpg");
- 	background-size:cover;
- 	width:100%;
- 	height:100%;
- 	content:"";
- 	position: absolute;
-    top: 0;
-	left: 0;
-	z-index: -1;
-	opacity: 0.8;
- }
- #header{
- 	padding-top:20px;
- 	padding-left:5px;
- 	padding-right:5px;
- 	padding-bottom:30px;
- 	
- }
- #navi{
- 	padding: 5px; 
- 	width: 99%;
- 	height: 50px;
- 	background-color:white;
- 	margin: 2px; 
- }
- #sidebar-left{
- 	clear:both;
- 	width:20%;
- 	height:600px;
- 	padding:5px; 
- 	float:left;
- 	background-color: white;
- 	margin: 2px;
- }
- #contentbody{
- 	width: 70%;
- 	height:80%;
- 	padding:5px;
- 	float:left;
- 	background-color: white;
- 	margin: 2px;
- }
- #footer{
- 	clear:both;
- 	padding:5px;
- 	margin: 2px;
- }
- 
 </style>
 </head>
 <body>
-<div id="container">
-	<header id="header">
+	<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+		<tiles:insertAttribute name="mainNav"/>
+	</nav>
+	<header class="masthead">
 		<tiles:insertAttribute name="header"/>
 	</header>
-	<nav id="navi">
-		<tiles:insertAttribute name="navi"/>
+	<nav id="nav" style="background-color: #868e96;">
+		<tiles:insertAttribute name="nav"/>
 	</nav>
-	<aside id="sidebar-left">
-		<tiles:insertAttribute name="side"/>
-	</aside>
-	<section id="contentbody">
-		<tiles:insertAttribute name="body" ignore="true"/>
-	</section>
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-12 col-md-12 mx-12" id="main-text">
+			<section id="contentbody">
+				<tiles:insertAttribute name="body" ignore="true"/>
+			</section>
+		</div>
+	</div>
+</div>
 	<footer id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</footer>
-</div>
+	
+  <!-- Bootstrap core JavaScript -->
+  <script src="${contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Custom scripts for this template -->
+  <script src="${contextPath}/resources/js/clean-blog.min.js"></script>
 </body>
 </html>
