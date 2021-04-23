@@ -45,6 +45,7 @@
 			<tr align="center">
 			<td><input type="button" value="Login" onclick="fn_login()"/></td>
 			<td><input type="button" value="cancel" onclick="fn_cancel()"/></td>
+			<td><button onclick="location.href='${contextPath}/joinForm.do'">회원가입</button></td>
 			</tr>
 		</table>
 			

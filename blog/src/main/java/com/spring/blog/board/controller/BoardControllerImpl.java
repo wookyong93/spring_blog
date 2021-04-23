@@ -93,7 +93,7 @@ public class BoardControllerImpl implements BoardController{
 	}
 
 	@Override
-	@RequestMapping(value="/viewForm.do" , method=RequestMethod.GET)
+	@RequestMapping(value={"/viewForm.do","/modForm.do"} , method=RequestMethod.GET)
 	public ModelAndView viewForm(@RequestParam("contentNO")int contentNO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
@@ -154,5 +154,6 @@ public class BoardControllerImpl implements BoardController{
 		mav.addObject("hitList",hitList);
 		return mav;
 	}
+
 	
 }

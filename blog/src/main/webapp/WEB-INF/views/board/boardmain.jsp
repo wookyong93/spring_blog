@@ -17,6 +17,7 @@
 		margin:0 auto; 
 	}
 </style>
+<script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
@@ -42,12 +43,22 @@
 		<td>${board.id}</td><td>${board.writeDate}</td><td>${board.hit}</td>
 		<tr>
 		<td colspan="2">
-			<textarea rows="15" cols="50" style="resize:none;" readonly="readonly">${board.content}
-			</textarea>
-			
+			<textarea id="content" readonly="readonly" style="resize: none;">${board.content}</textarea>
 		</td>
 		</tr>
 		</c:forEach>
+		<script>
+			
+			CKEDITOR.replace( 'content',{
+				width:'400',
+				height:'300',
+				toolbar:[]
+			});
+			CKEDITOR.editorConfig = function(config){
+				config.resize_enabled=false;
+			}
+			
+		</script>
 	</c:if>
 	</table>
 	</article>

@@ -6,7 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style>
+</style>
 <title>글쓰기 창</title>
+<script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	function fn_insert(){
 		var frm = document.getElementById('frm');
@@ -44,7 +48,9 @@
 		<tr>
 		<tr align="center">
 			<td>
-				<textarea style="resize:none" rows="30" cols="50" id="content" name="content"></textarea>
+				<textarea style="resize:none" rows="30" cols="50" id="content" name="content">
+				</textarea>
+				
 			</td>
 		</tr>
 		<tr>
@@ -56,5 +62,15 @@
 		</tr>
 	</table>
 </form>
+	<script type="text/javascript">
+	
+			CKEDITOR.replace( 'content',{
+				width:'600',
+				height:'300'
+			});
+			CKEDITOR.editorConfig = function(config){
+				config.resize_enabled=false;
+			}
+	</script>
 </body>
 </html>

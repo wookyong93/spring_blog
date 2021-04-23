@@ -60,6 +60,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/board/viewForm.jsp"/>
 	</definition>
 	
+	<definition name="modForm" extends="baseLayout">
+		<put-attribute name="title" value="글 수정하기"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/modForm.jsp"/>
+	</definition>
+	
 	<definition name="searchContent" extends="baseLayout">
 		<put-attribute name="title" value="검색 결과창"/>
 		<put-attribute name="body" value="/WEB-INF/views/search/searchContent.jsp"/>
