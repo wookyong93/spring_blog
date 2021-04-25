@@ -8,65 +8,7 @@
 <meta charset="UTF-8">
 <title>로그인창</title>
 <style>
-#card-img{
-	width: 40px; 
-	margin-bottom: 20px; 
-}
-#formIcon{
-	width: 25px;
-	margin: 5px;
-}
-#btn-Icon{
-	float:left;
-	width: 25px;
-	padding: 0px;
-	margin: 2px 4px 2px 4px;    
-} 
-.form-span{
-	margin : 5px;
-	font-family: squareRoundEB;
-	font-weight: bold;
-}
-.form-btn-login{
-	width: 100px;
-	padding: 2px;
-	margin:1px 4px 1px 4px; 
-	border-radius: 5px;
-	color: lightgreen;  
-	border:4px solid lightgreen;  
-	background-color: transparent;
-	outline: 0;
-} 
-.form-btn-cancel{
-	width: 100px;
-	padding: 2px;
-	margin:1px 4px 1px 4px; 
-	border-radius: 5px;
-	color: red;  
-	border:4px solid red; 
-	background-color: transparent;
-	outline: 0;
-} 
-.form-btn-join{
-	width: 100px;
-	padding: 2px;
-	margin:1px 4px 1px 4px; 
-	border-radius: 5px; 
-	color: lightblue;   
-	border:4px solid lightblue; 
-	background-color: transparent;
-} 
-.btn-span{
-	font-size: 14px;  
-	font-family: squareRoundEB;
-}
-.form-btn-join:focus,.form-btn-cancel:focus,.form-btn-login:focus {
-	outline: none;
-}
-.form-group>input{
-	outline: none; 
-	font-family: squareRoundEB;
-}
+
 
 </style>
 <script>

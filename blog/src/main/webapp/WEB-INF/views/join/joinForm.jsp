@@ -29,6 +29,11 @@
 	.alerter{
 		font-size: 8px;
 	}
+
+	.form-span,#formIcon{
+	margin-bottom: 10px; 
+	float: left;
+	}
 	
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -111,75 +116,86 @@
 </script>
 </head>
 <body>
-	<form name="frm">
-		<table id="jointable">
-			<tr class="jointr">
-				<td colspan="3"  class="tabletitle">회원가입</td>
-			</tr>
-			<tr align="center">
-				<td width="20%" class="nametag">ID</td>
-				<td width="50%">
-				<c:if test="${okId == null}">
-				<%--중복체크된 아이디가 존재하지 않을 경우 --%> 
-					<input type="text"  class="textfield" name="id" id="id" onchange="fn_idchk()"/>
-					<input type="hidden" id="check" value="no"/>
-				</c:if>
-				<c:if test="${okId != null}">
-				<%--중복체크된 아이디가 존재할 경우 --%>
-				<input type="text"  class="textfield" name="id" id="id" value="${okId}"/>
-				<input type="hidden" id="check" value="ok"/>
-				</c:if>
-				</td>
-				
-				<td width="20%"><input type="button" value="중복체크" id="idcheck" onclick="fn_idCheck()" /></td>
-			</tr>
-			<tr>
-				<td colspan="3"><div id="idcall" class="alerter"></div></td>
-			</tr>
-			<tr>
-				<td class="nametag">PW</td><td><input class="textfield" type="password" name="pwd" id="pwd" onchange="fn_passwordCheck()"></td>
-			</tr>
-				<tr>
-					<td colspan="3"><div id="pw" class="alerter"></div><input type="hidden" id="checkpwd" value=""/></td>
-				</tr>
-			<tr>
-				<td class="nametag">PW Check</td><td><input  class="textfield" type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()"/></td>
-			</tr>
-			<tr>
-				<td colspan ="3"><div id="pwsame" class="alerter"></div><input type="hidden" id="checkpwdchk" value=""/></td>
-			</tr>
-			<tr>
-				<td class="nametag">이름</td><td><input  class="textfield" type="text" name="name" id="name"/></td>
-			</tr>
-			<tr>
-				<td class="nametag">E-mail</td>
-				<td>
-					<input type="email" name="email" class="textfield"  id="email" onchange="fn_email()"/>
-					<input type="hidden" id="checkemail" value=""/>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3"><div id="emailcall" class="alerter"></div>
-			</tr>
-			<tr>
-				<td class="nametag">주소</td>
-				<td align="left" colspan="2">
-				<input type="text" class="addrfield" id="postcode" placeholder="우편번호">
-				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" class="addrfield" id="roadAddress" placeholder="도로명주소">
-				<span id="guide" style="color:#999;display:none"></span>
-				<input type="text" class="addrfield" id="detailAddress" placeholder="상세주소" onchange="fn_address()"><br>
-				<input type="text" class="addrfield" id="extraAddress" placeholder="참고항목">
-				<input type="hidden" id="address" name="address"/>
-				</td>
-			</tr>
-			<tr>
-			<td colspan ="3">
-				<input type="button" value="가입" onclick="fn_join()"/>
-				<input type="button" value="취소" onclick="location.href='${contextPath}/main.do';"/>
-			</td>
-			</tr> 
-		</table>
-	</form>
+	<div class="container ">
+		<div class="col-lg-10 col-md-10 col-mx-10"style="margin:0 auto;">
+			<div class="card" >
+				<div class="card-header bg-secondary text-white" style="text-align: center">
+					 <img id="card-img" src="${contextPath}/resources/image/logo.png">
+					 <font size="16px" > B L O G</font> 
+				</div>
+				<div style="text-align: center;margin: 15px;">
+					<h3>회원가입</h3>
+				<form name="frm" class="form-group" > 
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/user.png" id="formIcon">
+						<span class="form-span">I D</span>
+					</div>
+					<div class="input-group">
+					<c:if test="${okId == null}">
+					<%--중복체크된 아이디가 존재하지 않을 경우 --%> 
+						<input class="form-control" type="text" name="id" id="id" onchange="fn_idchk()" placeholder="ID"/>
+						<input type="hidden" id="check" value="no"/>
+					</c:if>
+					<c:if test="${okId != null}">
+					<%--중복체크된 아이디가 존재할 경우 --%>
+						<input class="form-control" type="text" name="id" id="id" onchange="fn_idchk()" value="${okId}"/>
+						<input type="hidden" id="check" value="ok"/>
+					</c:if>
+						<span class="input-group-btn">
+							<button type="button" class="form-btn-check" id="idcheck" onclick="fn_idCheck()" >
+							중복체크
+							</button>
+			      		</span>
+					</div>
+					<div id="idcall" class="alerter"></div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
+						<input class="form-control"  type="password" name="pwd" id="pwd"placeholder="PW"/> 
+					</div>
+					<div id="pw" class="alerter"></div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
+						<input class="form-control"  type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()" placeholder="PW CHECK"/> 
+					</div>
+					<div id="pwsame" class="alerter"></div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">이름</span>
+						<input class="form-control" type="text" name="name" id="name" placeholder="NAME"/> 
+					</div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">E-mail</span>
+						<input class="form-control" type="email" name="email" 
+						onchange="fn_email()" placeholder="E-MAIL"/> 
+						<input type="hidden" id="checkemail" value=""/>
+					</div>
+					<div id="emailcall" class="alerter"></div>
+					<div class="form-goup" style="margin-bottom: 50px;">
+						<img src="${contextPath}/resources/image/home.png" id="formIcon">
+						<span class="form-span">주 소</span>
+					<div class="input-group">
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="postcode" placeholder="우편번호">
+						<input type="button"class="form-btn-check" style="width: 120px;" onclick="execDaumPostcode()" value="우편번호 찾기">
+					</div>
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="roadAddress" placeholder="도로명주소">
+						<span id="guide" style="color:#999;display:none"></span>
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="detailAddress" placeholder="상세주소" onchange="fn_address()">
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="extraAddress" placeholder="참고항목">
+						<input type="hidden" id="address" name="address"/>
+					</div>
+					<div class="form-group">	
+						<button onclick="fn_join()" class="form-btn-join" style="border-color: lightgreen">
+							<img src="${contextPath}/resources/image/signUp.png" id="btn-Icon">
+							<span class="btn-span" style="color:lightgreen">회원가입</span>
+						</button>
+						<button type="button" onclick="location.href='${contextPath}/main.do';"  class="form-btn-cancel">
+							<img src="${contextPath}/resources/image/cancel.png" id="btn-Icon">
+							<span class="btn-span">취소</span>
+						</button>
+					</div>						
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
