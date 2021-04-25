@@ -9,25 +9,12 @@
 <meta charset="UTF-8">
 <title>회원가입창</title>
 <style>
-	.textfield{
-		font-size: 20px;
-		margin: 3px;
-	}
-	.nametag{
-		text-align:left;
-		font-size: 20px;
-		font-weight: bold;
-	}
-	#jointable{
-		margin:  auto;
-	}
-	.tabletitle{
-		text-align: center;
-		font-size: 32px;
-		font-weight: bold;
-	}
 	.alerter{
-		font-size: 8px;
+		margin:2px;
+		padding:2px;
+		width:100%;
+		text-align:left;
+		font-size: 12px; 
 	}
 
 	.form-span,#formIcon{
@@ -53,13 +40,13 @@
     	//ID 조건이 맞는지 출력할 div 호출
     	var idcall = document.getElementById('idcall');
     	if(idRule.test(document.getElementById('id').value)){
-    		idcall.innerHTML ="아이디 조건에 맞습니다."
+    		idcall.innerHTML ="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>아이디 조건에 맞습니다."
     	}else{
-    		idcall.innerHTML ="아이디는 영문 +숫자 조합으로 5글자 이상 사용해야합니다.";
+    		idcall.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>아이디는 영문 +숫자 조합으로 5글자 이상 사용해야합니다.";
     	}
     	//해당태그에 추가 
     }
-    //ID 중복체크 
+  //ID 중복체크 
     function fn_idCheck(){
     	//버튼 클릭시 실행
     	var id = document.getElementById('id');
@@ -73,6 +60,64 @@
     		frm.method="post";
     		frm.action="${contextPath}/idCheck.do"; 
     		frm.submit();
+    	}
+    }
+    //페스워드가 형식에 맞는지 확인하는 함수
+    function fn_passwordCheck(){
+    	//패스워드 형식 지정
+    	var password=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+    	var pw = document.getElementById('pw');
+    	var checkpwd = document.getElementById('checkpwd');
+    	if(!password.test(document.getElementById('pwd').value)){
+    		pw.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>영어,숫자,특수문자가 1개씩 포함한 8글자 이상이어야합니다.";
+		
+    	}else{
+    		
+  			pw.innerHTML ="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>사용가능한 비밀번호입니다";
+		
+  			checkpwd.value ="ok";
+    	}
+    	//패스워드 확인 결과 출력
+    }
+    //PW 와 PWCHECK 가 같은지 화인하는 함수
+    function fn_passwordsame(){
+    	var pwd = document.getElementById('pwd');
+    	var pwdchk = document.getElementById('pwdchk');
+    	var pwsame = document.getElementById('pwsame');
+    	var checkpwdchk = document.getElementById('checkpwdchk');
+    	if(pwd == ""){
+    		alert('PW를 입력해주세요');
+    	}else if(pwd.value == pwdchk.value){
+    		pwsame.innerHTML = "<img src='${contextPath}/resources/image/check.png' style='width:20px;'>암호가 동일합니다.";
+		
+    		checkpwdchk.value ="ok";
+    	}else{
+    		pwsame.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>암호가 다릅니다."
+			
+    	}
+    }
+    //주소 입력해주는 함수
+    function fn_address(){
+    	var postcode = document.getElementById('postcode').value;
+    	var roadAddress = document.getElementById('roadAddress').value;
+    	var detailAddress = document.getElementById('detailAddress').value;
+    	var extraAddress = document.getElementById('extraAddress').value;
+    	var address = document.getElementById('address');
+    	address.value = "["+postcode+"]"+roadAddress+", "+detailAddress+extraAddress;
+    	console.log(address);
+    }
+    //이메일 형식 확인하는 함수
+    function fn_email(){
+    	var emailRule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    	var emailcall = document.getElementById('emailcall');
+    	var checkemail = document.getElementById('checkemail');
+    	if(emailRule.test(document.getElementById('email').value)){
+    		emailcall.innerHTML="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>사용가능한 이메일 형식입니다.";
+			
+    		checkemail.value ="ok";
+    	}else{
+    		emailcall.innerHTML="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>이메일형식이 틀립니다.";
+			
     	}
     }
     
