@@ -18,28 +18,41 @@
 		outline: none;
 	}
 	#btnIcon{
-		width:25px;
-		height: 25px;
+		width:20px;
+		height: 20px;
 	}
 	#logoImg{
-		width: 35px;
+		margin-bottom: 20px;
+		width: 60px;
 		background-color: white;
 	}
 	#mainNav .navbar-nav>li.nav-item>a{
 		font-size: 15px; 
 	}
+	#mainNav .navbar-nav>li.nav-item>a{
+		padding:5px 10px;
+		margin-top: 0px;
+		
+	}
 </style>
+<script>
+		function fn_mypage(){
+			var frm = document.frm
+			frm.action="${contextPath}/mypage.do";
+			frm.method="post";
+			frm.submit();
+	}</script>
 </head>
 <body>
-
+	 
     <div class="container">
-      <a class="navbar-brand" href="${contextPath}/main.do"><img id="logoImg" src="${contextPath}/resources/image/logo.png"> B L O G</a>
+      <a class="navbar-brand" href="${contextPath}/main.do"><img id="logoImg" src="${contextPath}/resources/image/logo.png"><font size="30px"> B L O G</font></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-		<ul class="navbar-nav ml-auto" style="font-size: 30px;">
+		<ul class="navbar-nav ml-auto">
 			
 			<li class="nav-item">
 			<a class="nav-link" href='${contextPath}/latelyBoard.do'>최근 글</a>
@@ -49,12 +62,12 @@
 			</li>
 			<c:if test="${loginId == null}">
 			<li class="nav-item">
-			<button id="headerBtn" onclick="location.href='${contextPath}/login.do'">
-			<img id ="btnIcon" src="${contextPath}/resources/image/login.png">로그인</button>
+			<a class="nav-link" href='${contextPath}/login.do'>
+			<img id ="btnIcon" src="${contextPath}/resources/image/login.png">로그인</a>
 			</li>
 			<li class="nav-item">
-			<button id="headerBtn" onclick="location.href='${contextPath}/joinForm.do'">
-			<img id ="btnIcon" src="${contextPath}/resources/image/signUp.png">회원가입</button>
+			<a class="nav-link" href='${contextPath}/joinForm.do'>
+			<img id ="btnIcon" src="${contextPath}/resources/image/signUp.png">회원가입</a>
 			</li>
 		</c:if>
 			<c:if test="${loginId != null}">
@@ -65,17 +78,19 @@
 				<a class="nav-link" href="${contextPath}/writeForm.do">글쓰기</a>
 			</li>
 			<li class="nav-item">
-			<button id="headerBtn" onclick="fn_logout()">
-			<img id ="btnIcon" src="${contextPath}/resources/image/logout.png">로그아웃</button>
+			<a href="javascript:void(0);" class="nav-link" onclick="fn_logout()">
+			<img id ="btnIcon" src="${contextPath}/resources/image/logout.png">로그아웃</a>
 			</li>
 			<li class="nav-item">
-		 	<button id="headerBtn" onclick ="fn_mypage()">
-			<img id ="btnIcon" src="${contextPath}/resources/image/mypage.png">마이페이지</button>
+		 	<a href="javascript:void(0);" class="nav-link" onclick="fn_mypage()">
+			<img id ="btnIcon" src="${contextPath}/resources/image/mypage.png">마이페이지</a>
 			</li>
 			</c:if>
 		</ul>
 		</div>
 	</div>
-
+	<form name="frm" style="display: none;">
+	<input type="hidden" name="loginId"value="${loginId}"/>
+	</form>
 </body>
 </html>

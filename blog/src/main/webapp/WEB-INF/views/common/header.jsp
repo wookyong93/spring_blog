@@ -9,7 +9,7 @@
 <title></title>
 <style>
 	.header_text{
-		padding: 100px 0px 100px;
+		padding: 230px 0px 100px;
 		text-align: center;
 		color: white;
 		
@@ -17,7 +17,7 @@
 	.header_text h1{
 		font-family:squareRoundEB,monospace;
 		font-weight:bold;
-		font-size:50px;
+		font-size:60px;
 		margin-top:0
 	}
 </style>
@@ -48,12 +48,6 @@
         </div>
       </div>
     </div>
-	<script>
-		function fn_mypage(){
-			var frm = document.frm;
-			frm.action="${contextPath}/mypage.do";
-			frm.method="post";
-			frm.submit();
-	}</script>
+	
 </body>
 </html>

@@ -31,7 +31,7 @@
 		outline: none;
 	}
 	#searchBtn{
-		width:20%;
+		width:25%;
 		margin: 0;
 		font-size: 20px;
 		padding: 5px;

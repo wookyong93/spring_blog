@@ -21,7 +21,10 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 	body{
-		font-family:squareRoundR;
+		font-family:squareRoundEB;
+	}
+	.post-title , .post-subtitle, .post-meta{
+		font-family:squareRoundEB;
 	}
 	header.masthead{
 		margin-bottom:0;
@@ -42,11 +45,22 @@
 	/*제일 두꺼운 폰트체*/
 	}
 	#mainNav{
+		padding-top :50px;
 		padding-left: 5px;
 		padding-right: 5px;
+		
 	}
 	#main-text{
 	text-align: center;
+}
+#contentbody{
+	padding: 30px;
+}
+
+@media only screen and (min-width: 992px){
+#mainNav.is-visible {
+ transform: translate3d(0,0,0);
+}
 }
 </style>
 </head>
@@ -60,15 +74,9 @@
 	<nav id="nav" style="background-color: #868e96;">
 		<tiles:insertAttribute name="nav"/>
 	</nav>
-	<div class="container">
-	  <div class="row">
-		<div class="col-lg-12 col-md-12 mx-12" id="main-text">
 			<section id="contentbody">
 				<tiles:insertAttribute name="body" ignore="true"/>
 			</section>
-		</div>
-	</div>
-</div>
 	<footer id="footer">
 		<tiles:insertAttribute name="footer"/>
 	</footer>

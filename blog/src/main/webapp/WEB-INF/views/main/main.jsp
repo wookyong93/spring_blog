@@ -22,7 +22,9 @@
 </style>
 </head>
 <body>
-	
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-12 col-md-12 mx-12" id="main-text">
 		<div class="post-preview" id="oneform">
 			<h1  class="post-title"> WELCOME BLOG PAGE!!!</h1>
 			<h3 class="post-subtitle">당신 만을 위한 공간 <br>
@@ -58,5 +60,8 @@
 	</c:forEach>
 
 </c:if>	
+</div>
+</div>
+</div>
 </body>
 </html>

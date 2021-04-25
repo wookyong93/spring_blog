@@ -141,7 +141,7 @@ public class MemberControllerImpl implements MemberController{
 	@Override
 	@RequestMapping(value={"/mypage.do","/modmember.do"}, method= {RequestMethod.POST,RequestMethod.GET})
 	//마이페이지 화면 전달 (리스트 형태로 정보 전달)
-	public ModelAndView mypage(@RequestParam("loginId")String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView mypage(@ModelAttribute("loginId")String id, HttpServletRequest request, HttpServletResponse response) throws Exception {
 			List<MemberVO> memberInfo = memberService.memberInfo(id);
 			String viewName = (String)request.getAttribute("viewName");
 			ModelAndView mav = new ModelAndView(viewName);

@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>마이 페이지</title>
-<script>
+<script> 
 window.onload=function(){
 		var id = "${loginId}";
-		if(id != ""){
+		if(id == ""){
 			alert('잘못된 접근입니다.');
 			location.href="${contextPath}/main.do";
 		}

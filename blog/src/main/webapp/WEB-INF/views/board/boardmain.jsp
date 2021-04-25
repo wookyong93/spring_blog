@@ -16,15 +16,21 @@
 	table#bList{
 		margin:0 auto; 
 	}
+	#pagingid{
+		margin-top: 10px;
+	}
 </style>
 <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
-
+	<div class="container">
+	  <div class="row">
+		<div class="col-lg-12 col-md-12 mx-12" id="main-text">
 	<article>
-	<table align="center">
+	
+	<table class="table" >
 		<tr>
-			<th colspan="2">최근 개시물</th>
+			<th colspan="6">최근 개시물</th>
 		</tr>
 	<c:if test="${empty boardMain}">
 		<tr>
@@ -37,82 +43,113 @@
 		<c:forEach var ="board" items="${boardMain}">
 		<c:set var="writeid" value="${board.id}"/>
 		<tr>
-		<td>${board.contentNO }</td>
-		<th>${board.title }</th>
+		<td>제목</td>
+		<th colspan="5">${board.title }</th>
 		</tr>
 		<tr>
-		<td>${board.id}</td><td>${board.writeDate}</td><td>${board.hit}</td>
+		<td>작성자</td>
+		<td>${board.id}</td>
+		<td>작성일</td>
+		<td>${board.writeDate}</td>
+		<td>조회수</td>
+		<td>${board.hit}</td>
 		<tr>
-		<td colspan="2">
+		<td colspan="6">
+		<div class="text-center">
 			<textarea id="content" readonly="readonly" style="resize: none;">${board.content}</textarea>
+		</div>
 		</td>
 		</tr>
 		</c:forEach>
 		<script>
 			
 			CKEDITOR.replace( 'content',{
-				width:'400',
-				height:'300',
 				toolbar:[]
 			});
 			CKEDITOR.editorConfig = function(config){
 				config.resize_enabled=false;
+				config.fontSize_defaultLabel='16px';
 			}
 			
 		</script>
 	</c:if>
 	</table>
+	
 	</article>
 
-<section>	
-	<table id="bList">
+<article>
+<div class="container">
+	  <div class="row">
+	<table class="table">
+	<tr>
+		<td class="">조회수</td>
+		<td class="">작성자</td>
+		<td class="">제목</td>
+		<td class="">작성일</td>
+		
+		
+	</tr>
 		<c:forEach var="bList" items="${bList}" varStatus="loop">
 		<c:set var="bId" value="${bList.id}"/>
 		<tr>
-			<td><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></td><td>${bList.writeDate}</td><td>${bList.id}</td>
+			<td>${bList.hit}</td>
+			<td>${bList.id}</td>
+			<td><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></td>
+			<td>${bList.writeDate}</td>
+			
+			
 		</tr>
 		</c:forEach>
 	</table>
+	<br>
 	<c:if test="${loginId eq bId}">
-	<table id="bList">
-		<tr>
+	<div class="col-lg-12 col-mg-12 col-mx-12" id="pagingid">
+			<ul class="pagination justify-content-center">
 			<c:if test="${pageMaker.prev}">
-				<td>
-					<a href="<c:url value='/baordmain.do?loginId=${loginId}&page=${pageMaker.startPage-1}'/>">prev </a>
-				<td>
+				<li class="page-item">
+					<a class="page-link" href="<c:url value='/baordmain.do?loginId=${bId}&page=${pageMaker.startPage-1}'/>">prev </a>
+				</li>
 			</c:if>
 			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-				<td>
-					<a href="<c:url value='/boardmain.do?loginId=${loginId}&page=${idx}'/>">${idx}</a>
-				</td>
+				<li class="page-item">
+					<a class="page-link" href="<c:url value='/boardmain.do?loginId=${bId}&page=${idx}'/>">${idx}</a>
+				</li>
 			</c:forEach>
 			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-				<td>
-					<a href="<c:url value='/boardmain.do?loginId=${loginId}&page=${pageMaker.endPage+1}'/>">next </a>
-				</td>
+				<li class="page-item">
+					<a class="page-link" href="<c:url value='/boardmain.do?loginId=${bId}&page=${pageMaker.endPage+1}'/>">next </a>
+				</li>
 			</c:if>
-	</table>
+		</ul>
+	</div>
 	</c:if>
+	<br>
 	<c:if test="${loginId ne bId}">
-	<table id="bList">
-		<tr>
+	<div class="col-lg-12 col-mg-12 col-mx-12"  id="pagingid">
+		<ul class="pagination justify-content-center">
 			<c:if test="${pageMaker.prev}">
-				<td>
-					<a href="<c:url value='/baordmain.do?loginId=${bId}&page=${pageMaker.startPage-1}'/>">prev </a>
-				<td>
+				<li class="page-item">
+					<a class="page-link" href="<c:url value='/baordmain.do?loginId=${bId}&page=${pageMaker.startPage-1}'/>" aria-label="Previous">&laquo; </a>
+				</li>
 			</c:if>
 			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-				<td>
-					<a href="<c:url value='/boardmain.do?loginId=${bId}&page=${idx}'/>">${idx}</a>
-				</td>
+				<li class="page-item">
+					<a class="page-link" href="<c:url value='/boardmain.do?loginId=${bId}&page=${idx}'/>">${idx}</a>
+				</li>
 			</c:forEach>
 			<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-				<td>
-					<a href="<c:url value='/boardmain.do?loginId=${bId}&page=${pageMaker.endPage+1}'/>">next </a>
-				</td>
+				<li class="page-item">
+					<a class="page-link" href="<c:url value='/boardmain.do?loginId=${bId}&page=${pageMaker.endPage+1}'/>"aria-label="next" >&raquo; </a>
+				</li>
 			</c:if>
-	</table>
+		</ul>
+	</div>
 	</c:if>
-</section>	
+	</div>
+</div>
+</article>	
+</div>
+</div>
+</div>
 </body>
 </html>

@@ -39,7 +39,7 @@ public class PageMaker {
 		// 마지막 페이지 번호 = 총 게시글 수 / 한 페이지당 보여줄 게시글의 갯수
 		startPage=(endPage - displayPageNum)+1;
 		if(startPage <=0) startPage =1;
-		prev = startPage ==1 ? false : true;
+		prev = startPage == 1 ? false : true;
 		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}
 	public int getStartPage() {

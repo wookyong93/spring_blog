@@ -59,14 +59,12 @@
 	</form>
 	<script>
 	CKEDITOR.replace( 'content',{
-		width:'400',
-		height:'300',
 		toolbar:[]
 	});
 	CKEDITOR.editorConfig = function(config){
 		config.resize_enabled=false;
+		config.fontSize_defaultLabel='16px';
 	}
-	
 	
 	var frm = document.getElementById('frm');
 	var title = document.getElementById('title');
