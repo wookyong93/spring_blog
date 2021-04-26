@@ -111,71 +111,85 @@ function fn_passwordCheck(){
 </script>
 </head>
 <body>
-	<form name="frmMod">
-		<table>
-			<tr>
-				<th>
-					<h1>회원정보 변경</h1>
-				</th>
-			</tr>
-			<c:forEach var="member" items="${memberInfo}">
-			<tr>
-				<td>ID</td>					
-				<td>
-					<input type="text" value="${member.id}" disabled="disabled"/>
-					<input type="hidden" name="id" value="${member.id}"/>		
-				</td>
-			</tr>
-			<tr align="center">
-				<td>PW</td><td><input type="password" name="pwd" id="pwd" onchange="fn_passwordCheck()"></td>
-			</tr>
-				<tr>
-					<td colspan="3"><div id="pw"></div><input type="hidden" id="checkpwd" value=""/></td>
-				</tr>
-			<tr align="center">
-				<td>PW Check</td><td><input type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()"/></td>
-			</tr>
-			<tr>
-				<td colspan ="3"><div id="pwsame"></div><input type="hidden" id="checkpwdchk" value=""/></td>
-			</tr>
-			<tr>
-				<td>이름</td>					
-				<td>
-					<input type="text" name="name" id="name"value="${member.name}"/>		
-				</td>
-			</tr>
-			<tr>
-				<td>이메일</td>					
-				<td>
-					<input type="email" name="email" id="email" value="${member.email}" onchange="fn_email()"/>		
-					<input type="hidden" id="checkemail" value=""/>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3"><div id="emailcall"></div>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<td align="left" colspan="2">
-				현재주소<input type="text" size="80" id="address" name="address" value="${member.address}"/><br>
-				<input type="text" id="postcode" placeholder="우편번호">
-				<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기"><br>
-				<input type="text" id="roadAddress" placeholder="도로명주소">
-				<span id="guide" style="color:#999;display:none"></span>
-				<input type="text" id="detailAddress" placeholder="상세주소" onchange="fn_address()">
-				<input type="text" id="extraAddress" placeholder="참고항목">
-
-				</td>
-			</tr>
-			</c:forEach>
-			<tr>
-			<td colspan="2">
-				<input type="button" value="회원정보 수정" onclick="fn_modMember()" />
-				<input type="button" value="취소" onclick="location.href='${contextPath}/mypage.do?loginId=${loginId}'"/>
-				<input type="button" value="회원탈퇴" onclick="fn_memberDel()"/>
-			</td>
-			</tr>
-		</table>
-	</form>
+	<div class="container ">
+		<div class="col-lg-10 col-md-10 col-mx-10"style="margin:0 auto;">
+			<div class="card" >
+				<div class="card-header bg-secondary text-white" style="text-align: center">
+					 <img id="card-img" src="${contextPath}/resources/image/logo.png">
+					 <font size="16px" > B L O G</font> 
+				</div>
+				<div style="text-align: center;margin: 15px;">
+					<h3>회원정보 수정</h3>
+				<c:forEach var="member" items="${memberInfo}">
+				<form name="frmMod" class="form-group" > 
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/user.png" id="formIcon">
+						<span class="form-span">I D</span>
+					</div>
+					<div class="form-group">
+						<input class="form-control" type="text" name="id" id="id" value="${member.id}" disabled="disabled"/>
+						<input type="hidden" name="id" value="${member.id}"/>
+					</div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
+						<input class="form-control"  type="password" name="pwd" id="pwd"placeholder="PW"/> 
+					</div>
+					<div id="pw" class="alerter"></div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
+						<input class="form-control"  type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()" placeholder="PW CHECK"/> 
+					</div>
+					<div id="pwsame" class="alerter"></div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">이름</span>
+						<input class="form-control" type="text" name="name" id="name" value="${member.name}" /> 
+					</div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">E-mail</span>
+						<input class="form-control" type="email" name="email" 
+						onchange="fn_email()" value="${member.email}"/> 
+						<input type="hidden" id="checkemail" value=""/>
+					</div>
+					<div id="emailcall" class="alerter"></div>
+					<div class="form-goup" style="margin-bottom: 50px;">
+						<img src="${contextPath}/resources/image/home.png" id="formIcon">
+						<span class="form-span">현 재 주 소</span>
+					<div class="from-group">
+					<input type="text" class="form-control" id="address" name="address" value="${member.address}"/>
+					</div>
+					<div class="form-group">
+						<img src="${contextPath}/resources/image/home.png" id="formIcon">
+						<span class="form-span">주 소</span>
+					</div>
+					<div class="input-group">
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="postcode" placeholder="우편번호">
+						<input type="button"class="form-btn-check" style="width: 120px;" onclick="execDaumPostcode()" value="우편번호 찾기">
+					</div>
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="roadAddress" placeholder="도로명주소">
+						<span id="guide" style="color:#999;display:none"></span>
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="detailAddress" placeholder="상세주소" onchange="fn_address()">
+						<input type="text" class="form-control" style="margin-bottom:10px;" id="extraAddress" placeholder="참고항목">
+						<input type="hidden" id="address" name="address"/>
+					</div>
+					<div class="form-group">	
+						<button onclick="fn_modMember()" class="form-btn-join" style="border-color: lightgreen;width: 150px;" >
+							<img src="${contextPath}/resources/image/modmember.png" id="btn-Icon">
+							<span class="btn-span" style="color:lightgreen">회원정보 변경</span>
+						</button>
+						<button type="button" style="width: 150px;" onclick="location.href='${contextPath}/mypage.do?loginId=${loginId}'"  class="form-btn-join">
+							<img src="${contextPath}/resources/image/cancel.png" id="btn-Icon">
+							<span class="btn-span">정보 변경 취소</span>
+						</button>
+						<button onclick="fn_join()" class="form-btn-cancel" style="width: 150px;">
+							<img src="${contextPath}/resources/image/remove-user.png" id="btn-Icon">
+							<span class="btn-span">회원 탈퇴</span>
+						</button>
+					</div>						
+				</form>
+				</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

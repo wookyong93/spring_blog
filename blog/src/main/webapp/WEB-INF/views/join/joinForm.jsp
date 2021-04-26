@@ -9,18 +9,7 @@
 <meta charset="UTF-8">
 <title>회원가입창</title>
 <style>
-	.alerter{
-		margin:2px;
-		padding:2px;
-		width:100%;
-		text-align:left;
-		font-size: 12px; 
-	}
 
-	.form-span,#formIcon{
-	margin-bottom: 10px; 
-	float: left;
-	}
 	
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

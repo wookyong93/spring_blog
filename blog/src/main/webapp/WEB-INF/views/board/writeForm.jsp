@@ -45,28 +45,45 @@ window.onload=function(){
 </script>
 </head>
 <body>
-
-<div class="container">
-	<form id="frm" class="container">
-	<div class="form-group">
-	<div class="text-center">
-		<h1 class="form-group">글 쓰 기</h1>
-		<label>제 목</label>
-		<input class="form-control" type="text" name="title" id="title"/><br>
-		<label>내 용</label>
-		<textarea class="form-control" style="resize:none" rows="30" cols="50" id="content" name="content">
-		</textarea>
-		</div>
-		<br>
-		<div class="col text-center">
-			<input class="btn btn-outline-success" type="button" value="글 저장하기" onclick="fn_insert()">
-			<input class="btn" type="reset" value="초기화"/>
-			<input class="btn" type="button" value="목록 돌아기기" onclick="location.href='${contextPath}/boardmain.do?loginId=${loginId}'"/>
+	<div class="container ">
+		<div class="col-lg-10 col-md-10 col-mx-10"style="margin:0 auto;">
+			<div class="card" >
+				<div class="card-header bg-secondary text-white" style="text-align: center">
+					 <img id="card-img" src="${contextPath}/resources/image/logo.png">
+					 <font size="16px" > B L O G</font> 
+				</div>
+				<div style="text-align: center;margin: 15px;">
+					<h3>새 글 쓰 기</h3>
+				<form id="frm" class="form-group" > 
+					<div class="form-group">
+						<span class="form-span">제목</span>
+					</div>
+					<div class="form-group">
+					<input class="form-control" type="text" name="title" id="title"/>
+					</div>
+					
+					<div class="form-group"style="margin-bottom: 60px;">
+					<span class="form-span">내용</span>
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" style="resize:none" rows="30" cols="50" id="content" name="content">
+						</textarea>
+					</div>
+					<div class="form-group" style="margin-top: 50px;">	
+						<button onclick="fn_insert()" class="form-btn-join" style="width:150px;border-color: lightgreen">
+							<img src="${contextPath}/resources/image/text-add.png" id="btn-Icon">
+							<span class="btn-span" style="color:lightgreen">새 글 저장하기</span>
+						</button>
+						<button type="button" style="width:150px;" class="form-btn-cancel" onclick="location.href='${contextPath}/boardmain.do?loginId=${loginId}'">
+							<img src="${contextPath}/resources/image/cancel.png" id="btn-Icon">
+							<span class="btn-span">목록 돌아가기</span>
+						</button>
+					</div>						
+				</form>
+				</div>
+			</div>
 		</div>
 	</div>
-	</form>
-	</div>
-
 	<script type="text/javascript">
 	
 			CKEDITOR.replace( 'content',{

@@ -32,50 +32,55 @@
 </script>
 </head>
 <body>
-<form id="frm">
-	<table width="80%">
-		<c:forEach var="board" items="${boardView}">
-			<c:set var="writeid" value="${board.id}"/>
-				<tr>
+	<div class="container ">
+		<div class="col-lg-10 col-md-10 col-mx-10"style="margin:0 auto;">
+			<div class="card" >
+				<div class="card-header bg-secondary text-white" style="text-align: center">
+					 <img id="card-img" src="${contextPath}/resources/image/logo.png">
+					 <font size="16px" > B L O G</font> 
+				</div>
+				<div style="text-align: center;margin: 15px;">
+					<h3>글 수정하기</h3>
+					<c:forEach var="board" items="${boardView}">
+					<c:set var="writeid" value="${board.id}"/>
+				<form id="frm" class="form-group" > 
+					<div class="form-group">
+						<span class="form-span">제목</span>
+						<input type="hidden" name = "contentNO" value="${board.contentNO}"/>
+					</div>
+					<div class="form-group">
+					<input class="form-control" type="text" name="title" id="title" value="${board.title }"/>
+					</div>
 					
-					<td>제목</td><td colspan="3">
-					<input type="text" name="title" id="title" value="${board.title }">
-					<input type="hidden" name = "contentNO" value="${board.contentNO}"/>
-					</td>
-				</tr>
-				<tr>
-					<td>작성일</td><td><input type="text"  name="writeDate" value="${board.writeDate}" readonly="readonly"></td>
-					<td>작성자</td><td><input type="text"  name="id" value="${board.id}" readonly="readonly"></td>
-					<td>조회수</td><td>${board.hit}</td>
-				</tr>
-				<tr>
-					<td colspan="4">내용</td>
-				</tr>
-				<tr>
-					<td colspan="4">
-					<textarea id="content" name="content">
-						 ${board.content}
-					</textarea>
-					</td>
-				</tr>
-			</c:forEach>
-		<tr>
-			<td colspan ="4">
-				<input type="button" value="수정하기" onclick="fn_mod()">
-				<input type="button" value="취소" onclick="location.href='${contextPath}/boardmain.do?loginId=${loginId}'"/>
-			</td>
-		</tr>
-	</table>
-</form>
+					<div class="form-group"style="margin-bottom: 60px;">
+					<span class="form-span">내용</span>
+					</div>
+					<div class="form-group">
+						<textarea class="form-control" style="resize:none" rows="30" cols="50" id="content" name="content">
+						${board.content}
+						</textarea>
+					</div>
+					<div class="form-group" style="margin-top: 50px;">	
+						<button type="button" onclick="fn_mod()" class="form-btn-join" style="width:150px;border-color: lightgreen">
+							<img src="${contextPath}/resources/image/text-edit.png" id="btn-Icon">
+							<span class="btn-span" style="color:lightgreen">수정하기</span>
+						</button>
+						<button type="button" style="width:150px;" class="form-btn-cancel" onclick="location.href='${contextPath}/boardmain.do?loginId=${loginId}'">
+							<img src="${contextPath}/resources/image/cancel.png" id="btn-Icon">
+							<span class="btn-span">취소</span>
+						</button>
+					</div>						
+				</form>
+				</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript">
 	
 			CKEDITOR.replace( 'content',{
-				width:'600',
-				height:'300'
+
 			});
-			CKEDITOR.editorConfig = function(config){
-				config.resize_enabled=false;
-			}
 			
 	</script>
 </body>

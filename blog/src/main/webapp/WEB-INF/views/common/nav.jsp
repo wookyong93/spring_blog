@@ -35,12 +35,14 @@
 		margin: 0;
 		font-size: 20px;
 		padding: 5px;
-		border: 0px;
+		border: 4px solid #00CCFF; 
 		border-radius: 0 3px 3px 0;
-		background-color: #00CCFF;
-		border: 1px solid white;
-		color:white;
+		background-color:;
+		color:#00CCFF;
 		font-weight: bold;
+	}
+	#searchBtn:focus, #searchBtn:hover{
+		outline: blue;  
 	}
 	.form-group{
 		font-family: squareRoundR;

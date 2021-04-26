@@ -20,17 +20,23 @@
 		margin-top: 10px;
 	}
 </style>
+
 <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<div class="container">
 	  <div class="row">
 		<div class="col-lg-12 col-md-12 mx-12" id="main-text">
+			<div class="card" >
+				<div class="card-header bg-secondary text-white" style="text-align: center">
+					 <img id="card-img" src="${contextPath}/resources/image/logo.png">
+					 <font size="16px" > B L O G</font> 
+				</div>
 	<article>
 	
 	<table class="table" >
 		<tr>
-			<th colspan="6">최근 개시물</th>
+			<th colspan="7">최근 게시물</th>
 		</tr>
 	<c:if test="${empty boardMain}">
 		<tr>
@@ -43,38 +49,37 @@
 		<c:forEach var ="board" items="${boardMain}">
 		<c:set var="writeid" value="${board.id}"/>
 		<tr>
-		<td>제목</td>
-		<th colspan="5">${board.title }</th>
+		<td class="table-head-td">제목</td>
+		<th class="table-content-td" colspan="6">${board.title }</th>
 		</tr>
 		<tr>
-		<td>작성자</td>
-		<td>${board.id}</td>
-		<td>작성일</td>
-		<td>${board.writeDate}</td>
-		<td>조회수</td>
-		<td>${board.hit}</td>
+		<td class="table-head-td" style="padding-left: 2px; padding-right: 0px;">조회수</td>
+		<td class="table-content-td" style="padding-left: 2px; padding-right: 0px;">${board.hit}</td>
+		<td class="table-head-td" style="padding-left: 2px; padding-right: 0px;">작성자</td>
+		<td class="table-content-td" style="padding-left: 2px; padding-right: 0px;">${board.id}</td>
+		<td class="table-head-td" style="padding-left: 2px; padding-right: 0px;">작성일</td>
+		<td colspan="2"  class="table-content-td" style="padding-left: 2px; padding-right: 0px;">${board.writeDate}</td>
+		
 		<tr>
-		<td colspan="6">
+		<td colspan="7">
 		<div class="text-center">
 			<textarea id="content" readonly="readonly" style="resize: none;">${board.content}</textarea>
 		</div>
 		</td>
-		</tr>
+		</tr> 
 		</c:forEach>
-		<script>
-			
-			CKEDITOR.replace( 'content',{
-				toolbar:[]
-			});
-			CKEDITOR.editorConfig = function(config){
-				config.resize_enabled=false;
-				config.fontSize_defaultLabel='16px';
-			}
-			
-		</script>
+		
 	</c:if>
 	</table>
-	
+	<script>
+	CKEDITOR.replace( 'content',{
+		toolbar:[]
+	});
+	CKEDITOR.editorConfig = function(config){
+		config.resize_enabled=false;
+		config.fontSize_defaultLabel='16px';
+	}; 
+	</script>
 	</article>
 
 <article>
@@ -82,22 +87,18 @@
 	  <div class="row">
 	<table class="table">
 	<tr>
-		<td class="">조회수</td>
-		<td class="">작성자</td>
-		<td class="">제목</td>
-		<td class="">작성일</td>
-		
-		
+		<td width="15%" class="table-head-td">조회수</td>
+		<td width="20%" class="table-head-td">작성자</td>
+		<td width="40%" class="table-head-td">제목</td>
+		<td width="40%" class="table-head-td">작성일</td>
 	</tr>
-		<c:forEach var="bList" items="${bList}" varStatus="loop">
+	<c:forEach var="bList" items="${bList}" varStatus="loop">
 		<c:set var="bId" value="${bList.id}"/>
 		<tr>
-			<td>${bList.hit}</td>
-			<td>${bList.id}</td>
-			<td><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></td>
-			<td>${bList.writeDate}</td>
-			
-			
+			<td class="table-content-td">${bList.hit}</td>
+			<td class="table-content-td">${bList.id}</td>
+			<td class="table-content-td"><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></td>
+			<td class="table-content-td">${bList.writeDate}</td>	
 		</tr>
 		</c:forEach>
 	</table>
@@ -148,6 +149,7 @@
 	</div>
 </div>
 </article>	
+</div>
 </div>
 </div>
 </div>

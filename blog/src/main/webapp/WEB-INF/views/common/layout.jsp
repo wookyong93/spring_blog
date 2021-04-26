@@ -20,6 +20,18 @@
   <link href="${contextPath}/resources/css/clean-blog.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <style>
+	.alerter{
+		margin:2px;
+		padding:2px;
+		width:100%;
+		text-align:left;
+		font-size: 12px; 
+	}
+
+	.form-span,#formIcon{
+	margin-bottom: 10px; 
+	float: left;
+	}
 	body{
 		font-family:squareRoundEB;
 	}
@@ -83,6 +95,7 @@
 }
 .form-btn-login{
 	width: 100px;
+	height:38px;
 	padding: 2px;
 	margin:1px 4px 1px 4px; 
 	border-radius: 5px;
@@ -93,6 +106,7 @@
 } 
 .form-btn-cancel{
 	width: 100px;
+	height:38px;
 	padding: 2px;
 	margin:1px 4px 1px 4px; 
 	border-radius: 5px;
@@ -103,6 +117,7 @@
 } 
 .form-btn-join{
 	width: 100px;
+	height:38px;
 	padding: 2px;
 	margin:1px 4px 1px 4px; 
 	border-radius: 5px; 
@@ -131,6 +146,22 @@
 .form-group>input{
 	outline: none; 
 	font-family: squareRoundEB;
+}
+.table-head-td{
+	font-size: 12px;
+}
+.table-content-td{
+	font-size: 12px;
+}
+.table{
+	border-top:2px solid gray;
+	border-bottom: 2px solid gray;
+	table-layout: fixed;
+}
+#tableContent >p{
+display:block;
+text-overflow:ellipsis; 
+overflow:hidden;
 }
 </style>
 </head>

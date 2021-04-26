@@ -7,10 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인창</title>
-<style>
-
-
-</style>
 <script>
 window.onload=function(){
 		var id = "${loginId}";
@@ -53,13 +49,13 @@ window.onload=function(){
 					<h3>로그인</h3>
 					<form name="loginFrm" class="form-group" > 
 				<div class="form-group">
-				<img src="${contextPath}/resources/image/user.png" id="formIcon">
+					<img src="${contextPath}/resources/image/user.png" id="formIcon">
 					<span class="form-span">I D</span>
-					<input class="form-group" type="text" name="id" id="id" placeholder="ID"/>
+					<input class="input-group" type="text" name="id" id="id" placeholder="ID"/>
 				</div>
-				<div class="form-group">
+				<div class="form-group" style="margin-bottom: 50px;">
 					<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
-					<input class="form-group" type="password" name="pwd" id="pwd"placeholder="PW"/> 
+					<input class="input-group" type="password" name="pwd" id="pwd"placeholder="PW"/> 
 				</div>
 				<div class="form-group">	
 					<button type="button" onclick="fn_login()" class="form-btn-login">
@@ -70,7 +66,7 @@ window.onload=function(){
 					<img src="${contextPath}/resources/image/cancel.png" id="btn-Icon">
 					<span class="btn-span">취소</span>
 					</button>
-					<button onclick="location.href='${contextPath}/joinForm.do'" class="form-btn-join">
+					<button type="button" onclick="location.href='${contextPath}/joinForm.do'" class="form-btn-join">
 					<img src="${contextPath}/resources/image/signUp.png" id="btn-Icon">
 					<span class="btn-span">회원가입</span>
 					</button>
