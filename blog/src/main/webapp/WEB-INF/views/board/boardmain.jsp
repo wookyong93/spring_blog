@@ -40,7 +40,7 @@
 		</tr>
 	<c:if test="${empty boardMain}">
 		<tr>
-			<td>
+			<td colspan="7">
 			<h1>최근 작성된 게시물이 없습니다!.</h1>
 			</td>
 		</tr>
@@ -97,7 +97,7 @@
 		<tr>
 			<td class="table-content-td">${bList.hit}</td>
 			<td class="table-content-td">${bList.id}</td>
-			<td class="table-content-td"><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></td>
+			<td class="table-content-td"><p style="margin: 0;display:block;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"><a href="${contextPath}/viewForm.do?contentNO=${bList.contentNO}">${bList.title}</a></p></td>
 			<td class="table-content-td">${bList.writeDate}</td>	
 		</tr>
 		</c:forEach>
@@ -150,6 +150,29 @@
 </div>
 </article>	
 </div>
+<c:if test="${(loginId != wrtieid) || (loginId==null) }">
+<div class="form-group" style="margin-top: 50px;float: right;">	
+	<c:if test="${loginId !=null && writeid==null }">
+			<button type="button" onclick='location.href="${contextPath}/writeForm.do"' class="form-btn-join" style="width:150px;border-color: lightgreen">
+			<img src="${contextPath}/resources/image/text-add.png" id="btn-Icon">
+			<span class="btn-span" style="color:lightgreen">새 글쓰기</span>
+		</button>
+		</c:if>
+<button type="button" style="width:150px;" class="form-btn-cancel" onclick="location.href='${contextPath}/main.do'">
+			<img src="${contextPath}/resources/image/cancel.png" id="btn-Icon">
+			<span class="btn-span">메인페이지이동</span>
+		</button>
+		
+		</div>
+</c:if>
+<c:if test="${(loginId == writeid)}">
+<div class="form-group" style="margin-top: 50px;float: right;">	
+		<button type="button" onclick='location.href="${contextPath}/writeForm.do"' class="form-btn-join" style="width:150px;border-color: lightgreen">
+			<img src="${contextPath}/resources/image/text-add.png" id="btn-Icon">
+			<span class="btn-span" style="color:lightgreen">새 글쓰기</span>
+		</button>
+		</div>
+</c:if>
 </div>
 </div>
 </div>

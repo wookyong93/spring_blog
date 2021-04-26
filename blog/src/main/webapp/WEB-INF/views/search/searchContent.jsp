@@ -68,7 +68,7 @@
 		<tr>
 			<td class="table-content-td">${board.hit}</td>
 			<td class="table-content-td">${board.id}</td>
-			<td class="table-content-td"><p style="margin: 0;display:block;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;"><a href="${contextPath}/viewForm.do?contentNO=${board.contentNO}">${board.title}</a></p></td>
+			<td class="table-content-td"><p id="titleP"><a href="${contextPath}/viewForm.do?contentNO=${board.contentNO}">${board.title}</a></p></td>
 			<td class="table-content-td">${board.writeDate}</td>
 			
 		</tr>

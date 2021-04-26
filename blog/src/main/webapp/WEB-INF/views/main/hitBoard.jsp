@@ -38,23 +38,23 @@
 		<table class="table" style="margin-bottom: 30px;">
 		<c:set var="writeid" value="${board.id}"/>
 		<tr>
-		<td width="15%" class="table-head-td">조회수</td>
-		<td width="20%" class="table-head-td">작성자</td>
-		<td width="40%" class="table-head-td">제목</td>
-		<td width="40%" class="table-head-td">작성일</td>
+		<td width="15%" class="table-head-td"><p id="titleP">조회수</p></td>
+		<td width="20%" class="table-head-td"><p id="titleP">작성자</p></td>
+		<td width="40%" class="table-head-td"><p id="titleP">제목</p></td>
+		<td width="40%" class="table-head-td"><p id="titleP">작성일</p></td>
 		</tr>
 		<tr>
 		<td class="table-content-td">${board.hit}</td>
-			<td class="table-content-td">${board.id}</td>
-			<td class="table-content-td"><a href="${contextPath}/viewForm.do?contentNO=${board.contentNO}">${board.title}</a></td>
-			<td class="table-content-td">${board.writeDate}</td>
+			<td class="table-content-td"><p id="titleP">${board.id}</p></td>
+			<td class="table-content-td"><p id="titleP"><a href="${contextPath}/viewForm.do?contentNO=${board.contentNO}">${board.title}</a></td>
+			<td class="table-content-td"><p id="titleP">${board.writeDate}</p></td>
 		<tr>
 			<td colspan="6" class="table-head-td">
 			내용
 			</td>
 		</tr>
 		<tr>
-		<td colspan="6"  class="table-content-td" id="tableContent">
+		<td colspan="6"  class="table-content-td" id="contentP">
 			${board.content}
 		</td>
 		</tr>

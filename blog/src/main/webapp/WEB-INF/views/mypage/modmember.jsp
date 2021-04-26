@@ -132,13 +132,15 @@ function fn_passwordCheck(){
 					</div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
-						<input class="form-control"  type="password" name="pwd" id="pwd"placeholder="PW"/> 
+						<input class="form-control"  type="password" name="pwd" id="pwd" placeholder="PW"onchange="fn_passwordCheck()"/> 
 					</div>
+					<input type="hidden" id="checkpwd" value=""/>
 					<div id="pw" class="alerter"></div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
 						<input class="form-control"  type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()" placeholder="PW CHECK"/> 
 					</div>
+					<input type="hidden" id="checkpwdchk" value=""/>
 					<div id="pwsame" class="alerter"></div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">이름</span>
@@ -146,7 +148,7 @@ function fn_passwordCheck(){
 					</div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">E-mail</span>
-						<input class="form-control" type="email" name="email" 
+						<input class="form-control" type="email" name="email"  id="email"
 						onchange="fn_email()" value="${member.email}"/> 
 						<input type="hidden" id="checkemail" value=""/>
 					</div>
@@ -172,7 +174,7 @@ function fn_passwordCheck(){
 						<input type="hidden" id="address" name="address"/>
 					</div>
 					<div class="form-group">	
-						<button onclick="fn_modMember()" class="form-btn-join" style="border-color: lightgreen;width: 150px;" >
+						<button type="button" onclick="fn_modMember()" class="form-btn-join" style="border-color: lightgreen;width: 150px;" >
 							<img src="${contextPath}/resources/image/modmember.png" id="btn-Icon">
 							<span class="btn-span" style="color:lightgreen">회원정보 변경</span>
 						</button>
@@ -180,7 +182,7 @@ function fn_passwordCheck(){
 							<img src="${contextPath}/resources/image/cancel.png" id="btn-Icon">
 							<span class="btn-span">정보 변경 취소</span>
 						</button>
-						<button onclick="fn_join()" class="form-btn-cancel" style="width: 150px;">
+						<button type="button" onclick="fn_memberDel()" class="form-btn-cancel" style="width: 150px;">
 							<img src="${contextPath}/resources/image/remove-user.png" id="btn-Icon">
 							<span class="btn-span">회원 탈퇴</span>
 						</button>

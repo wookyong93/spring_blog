@@ -37,6 +37,8 @@ public class BoardControllerImpl implements BoardController{
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String viewName=(String) request.getAttribute("viewName");
+		HttpSession session =request.getSession();
+		session.removeAttribute("okId");
 		List<BoardVO> latelyList = boardService.allLately();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("latelyList",latelyList);

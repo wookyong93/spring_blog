@@ -39,7 +39,7 @@
     function fn_idCheck(){
     	//버튼 클릭시 실행
     	var id = document.getElementById('id');
-    	var frm=document.frm;
+    	var frm=document.getElementById('frm');
     	if(id.value==""){
     		//id 값 공란 제거
     		alert('id를 입력해주세요');
@@ -112,7 +112,7 @@
     
     //회원가입 버튼클릭시 실행
     function fn_join(){
-    	var frm = document.frm;
+    	var frm = document.getElementById('frm');
     	var id = document.getElementById('id');
     	var pwd = document.getElementById('pwd');
     	var name = document.getElementById('name');
@@ -159,7 +159,7 @@
 				</div>
 				<div style="text-align: center;margin: 15px;">
 					<h3>회원가입</h3>
-				<form name="frm" class="form-group" > 
+				<form id="frm" class="form-group" > 
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/user.png" id="formIcon">
 						<span class="form-span">I D</span>
@@ -184,13 +184,15 @@
 					<div id="idcall" class="alerter"></div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
-						<input class="form-control"  type="password" name="pwd" id="pwd"placeholder="PW"/> 
+						<input class="form-control"  type="password" name="pwd" id="pwd"placeholder="PW" onchange="fn_passwordCheck()" /> 
 					</div>
+					<input type="hidden" id="checkpwd" value=""/>
 					<div id="pw" class="alerter"></div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/padlock.png" id="formIcon"><span class="form-span">PW</span>
 						<input class="form-control"  type="password" name="pwdchk" id="pwdchk" onchange="fn_passwordsame()" placeholder="PW CHECK"/> 
 					</div>
+					<input type="hidden" id="checkpwdchk" value=""/>
 					<div id="pwsame" class="alerter"></div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">이름</span>
@@ -198,7 +200,7 @@
 					</div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">E-mail</span>
-						<input class="form-control" type="email" name="email" 
+						<input class="form-control" type="email" name="email" id="email"
 						onchange="fn_email()" placeholder="E-MAIL"/> 
 						<input type="hidden" id="checkemail" value=""/>
 					</div>
@@ -217,7 +219,7 @@
 						<input type="hidden" id="address" name="address"/>
 					</div>
 					<div class="form-group">	
-						<button onclick="fn_join()" class="form-btn-join" style="border-color: lightgreen">
+						<button type="button" onclick="fn_join()" class="form-btn-join" style="border-color: lightgreen">
 							<img src="${contextPath}/resources/image/signUp.png" id="btn-Icon">
 							<span class="btn-span" style="color:lightgreen">회원가입</span>
 						</button>

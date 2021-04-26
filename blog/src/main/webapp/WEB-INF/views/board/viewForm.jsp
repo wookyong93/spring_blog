@@ -48,7 +48,7 @@
 	</table>
 	<c:if test="${loginId != writeid}">
 	<div class="form-group">	
-		<button onclick="location.href='${contextPath}/boardmain.do?loginId=${writeid}'" class="form-btn-join" style="border-color: lightgreen; width: 200px;">
+		<button type="button"onclick="location.href='${contextPath}/boardmain.do?loginId=${writeid}'" class="form-btn-join" style="border-color: lightgreen; width: 200px;">
 			<img src="${contextPath}/resources/image/blog-page.png" id="btn-Icon">
 			<span class="btn-span" style="color:lightgreen">${writeid}님 블로그 이동</span>
 		</button>

@@ -158,11 +158,23 @@
 	border-bottom: 2px solid gray;
 	table-layout: fixed;
 }
-#tableContent >p{
-display:block;
-text-overflow:ellipsis; 
-overflow:hidden;
-}
+	#titleP{
+		margin:0px;
+		display:block;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+		white-space: nowrap;
+	}
+	#contentP>p{
+		width:100%;
+		margin:0px;
+		display:block;
+		text-overflow:ellipsis; 
+		overflow:hidden;
+		white-space: normal;
+		max-height:100px; 
+		white-space: nowrap;
+	}
 </style>
 </head>
 <body>
