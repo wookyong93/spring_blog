@@ -26,34 +26,36 @@
     - 회원정보 수정
     - 회원 탈퇴
 
-## 개발도구
-Spring 4.1.1 RELESE
-BootStrap3
+## 게시판 관련 기능 소개
+- 메인 최근 게시글 출력
+- 게시글 검색 기능
+- 최근 / 최다 조회수 게시글 출력
+- 게시글 작성
+- 상세 게시글 조회
+  - 게시글 목록
+  - 게시글 수정
+  - 게시글 삭제
 
-## 사용언어 
+## 애플리케이션 개발 사용 시스템
+- 개발 언어
+  - JAVA 1.8
+- AWS 서버
+  -ApacheTomcat 9.0.43
+-  에디터
+  -Eclips jee 2020-12-R
+  -Oracle SQL Developer
+- DB
+  - Oracle Database 18c XE
+- API
+  - REST API 
+  - KAKAO MAP API
+  - JUSO API
+  - Tiles
+  - MYBATIS
+  - JQUERY
+  - BOOTSTRAP
 
-JAVA / JSP / HTML / CSS / JS
+## 개발 후기 
+```
 
-## 사용 API
-
-REST API , KakaoMap API , juso API, MYBATIS , TILES , JQUERY ,  JACKSON
-
-
-기능 소개 
-
-회원관련 기능 
--회원 가입
--회원 로그인
--회원정보 조회 / 수정 /삭제
--개인 글 게시 가능
-
-게시판 관련 기능
--글 작성 / 수정 / 삭제
--글 상세 보기
--최근 게시글 목록
--조회수 높은 게시글 목록
--게시글 검색기능
--다른 페이지 게시글 조회 
-aws EC2 를 이용한 웹 호스팅 
--site 
-http://3.37.33.62/main.do
+```
