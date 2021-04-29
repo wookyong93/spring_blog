@@ -18,7 +18,7 @@
 
 ## 사이트 이용 영상
 
-[![프로젝트 시연 영상](https://img.youtube.com/vi/8U7pdwsjx_c/hqdefault.jpg")](https://youtu.be/8U7pdwsjx_c)
+[![프로젝트 시연 영상](https://img.youtube.com/vi/8U7pdwsjx_c/0.jpg)](https://youtu.be/8U7pdwsjx_c)
 
 ## 회원관련 기능 소개
 - 회원 가입
