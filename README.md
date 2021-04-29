@@ -1,5 +1,6 @@
 # blog
-SPRING FRAMEWORK  MVC MODEL 2 BLOG
+# SPRING FRAMEWORK  MVC MODEL 2 BLOG
+==============================
 
 ### 프로젝트 계획이유
 -----------------------
@@ -14,8 +15,8 @@ SPRING FRAMEWORK  MVC MODEL 2 BLOG
 ## 호스팅 PAGE
 링크 : http://3.37.33.62/main.do
 
-### 회원 기능 소개
----
+## 회원 기능 소개
+
 ## 개발도구
 Spring 4.1.1 RELESE
 BootStrap3
