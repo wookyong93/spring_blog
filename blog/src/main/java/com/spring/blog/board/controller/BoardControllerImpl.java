@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -74,7 +75,7 @@ public class BoardControllerImpl implements BoardController{
 
 	@Override
 	@RequestMapping(value="/insertContent.do" ,method=RequestMethod.POST)
-	public ResponseEntity insertContent(@ModelAttribute("board")BoardVO boardVO, HttpServletRequest request, HttpServletResponse response)
+	public ResponseEntity insertContent(@RequestBody BoardVO boardVO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
 		HttpSession session =request.getSession();
@@ -86,9 +87,9 @@ public class BoardControllerImpl implements BoardController{
 		int result = boardService.insertContent(boardVO);
 		try {
 			if(result != 0)
-			message="<script>alert('글 저장 성공');location.href='"+request.getContextPath()+"/boardmain.do?loginId="+boardVO.getId()+"';</script>";
+			message="성공";
 		}catch(Exception e) {
-			message="<script>alert('오류 발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
+			message="오류발생";
 		}
 			resEnt = new ResponseEntity(message, responseHeaders,HttpStatus.CREATED);
 		return resEnt;
@@ -108,7 +109,7 @@ public class BoardControllerImpl implements BoardController{
 	
 	@Override
 	@RequestMapping(value="/modContent.do", method=RequestMethod.POST)
-	public ResponseEntity modContent(@ModelAttribute("board")BoardVO boardVO, HttpServletRequest request,HttpServletResponse response) throws Exception{
+	public ResponseEntity modContent(@RequestBody BoardVO boardVO, HttpServletRequest request,HttpServletResponse response) throws Exception{
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
@@ -116,20 +117,22 @@ public class BoardControllerImpl implements BoardController{
 		int result = boardService.modContent(boardVO);
 		try {
 			
-			message="<script>alert('수정되었습니다.');location.href='"+request.getContextPath()+"/viewForm.do?contentNO="+boardVO.getContentNO()+"';</script>";
+			message="성공";
 			
 		}catch(Exception e) {
-			message="<script>alert('오류 발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
+			message="오류발생";
 		}
 		resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;
 	}
 
 	@Override
-	@RequestMapping(value="/delContent.do")
-	public ResponseEntity delContent(@RequestParam("contentNO")int contentNO, HttpServletRequest request, HttpServletResponse response)
+	@RequestMapping(value="/delContent.do", method=RequestMethod.POST)
+	public ResponseEntity delContent(@RequestBody String _contentNO, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// TODO Auto-generated method stub
+		String conNO[] =_contentNO.split("=");
+		int contentNO = Integer.parseInt(conNO[1]);
 		ResponseEntity resEnt = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html;charset=UTF-8");
@@ -137,10 +140,10 @@ public class BoardControllerImpl implements BoardController{
 		String message=null;
 		int reuslt = boardService.delContent(contentNO);
 		try {
-			message="<script>alert('삭제 완료되었습니다.');location.href='"+request.getContextPath()+"/boardmain.do?loginId="+session.getAttribute("loginId")+"';</script>";
+			message="성공";
 		}
 		catch(Exception e) {
-			message="<script>alert('오류 발생 관리자에게 문의하세요');location.href='"+request.getContextPath()+"/main.do';</script>";
+			message="오류발생";
 		}
 		resEnt=new ResponseEntity(message,responseHeaders,HttpStatus.OK);
 		return resEnt;

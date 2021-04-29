@@ -18,15 +18,16 @@
 <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+var _id = "${loginId}";
 window.onload=function(){
-		var id = "${loginId}";
-		if(id == ""){
+		if(_id == ""){
 			alert('잘못된 접근입니다.');
 			location.href="${contextPath}/main.do";
 		}
 	}
 	function fn_insert(){
-		var frm = document.getElementById('frm');
+		CKupdate();
 		var title = document.getElementById('title');
 		var content = document.getElementById('content');
 		
@@ -37,10 +38,31 @@ window.onload=function(){
 			alert('내용을 입력해주세요');
 			content.focus();
 		}else{
-			frm.method="post";
-			frm.action="${contextPath}/insertContent.do";
-			frm.submit();
+			CKupdate();
+			var formdata={
+					id:_id,title:$("#title").val(),content:$("#content").val()
+			};
+			$.ajax({
+				type:"post",
+				url:"${contextPath}/insertContent.do",
+				dataType:"text",
+				contentType:"application/json",
+				data:JSON.stringify(formdata),
+				success:function(data){
+					if(data=="성공"){
+					alert("글등록 성공")
+					location.href="${contextPath}/boardmain.do?loginId="+_id;
+					}
+				},error:function(data){
+					
+				}
+			}); 
 		}
+	}
+	//ajax 전송시 CK 에디터 정보를 다시 변환하여 줘야한다.
+	function CKupdate(){
+	    for ( instance in CKEDITOR.instances )
+	        CKEDITOR.instances[instance].updateElement();
 	}
 </script>
 </head>
@@ -54,7 +76,7 @@ window.onload=function(){
 				</div>
 				<div style="text-align: center;margin: 15px;">
 					<h3>새 글 쓰 기</h3>
-				<form id="frm" class="form-group" > 
+				<form id="writefrm" class="form-group" > 
 					<div class="form-group">
 						<span class="form-span">제목</span>
 					</div>
@@ -68,9 +90,10 @@ window.onload=function(){
 					<div class="form-group">
 						<textarea class="form-control" style="resize:none" rows="30" cols="50" id="content" name="content">
 						</textarea>
+						<input type="hidden" id="ckContent" value="CKEDITOR.instances.content.getData();"/>
 					</div>
 					<div class="form-group" style="margin-top: 50px;">	
-						<button onclick="fn_insert()" class="form-btn-join" style="width:150px;border-color: lightgreen">
+						<button type="button" onclick="fn_insert()" class="form-btn-join" style="width:150px;border-color: lightgreen">
 							<img src="${contextPath}/resources/image/text-add.png" id="btn-Icon">
 							<span class="btn-span" style="color:lightgreen">새 글 저장하기</span>
 						</button>

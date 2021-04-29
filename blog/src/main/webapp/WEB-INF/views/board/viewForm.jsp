@@ -27,7 +27,7 @@
 	<table class="table" style="margin-bottom: 40px;" >
 		<c:set var="writeid" value="${board.id}"/>
 		<tr>
-		<td>제목<input type="hidden" name = "contentNO" value="${board.contentNO}"/></td>
+		<td>제목<input type="hidden" id="contentNO" name = "contentNO" value="${board.contentNO}"/></td>
 		<th colspan="6">${board.title }</th>
 		</tr>
 		<tr>
@@ -104,8 +104,25 @@
 	}
 	function fn_del(){
 		var con = confirm('글을 삭제하시겠습니까?');
+		var str = $("#contentNO").val();
 		if(con == true){
-			location.href="${contextPath}/delContent.do?contentNO=${contentNO}";
+			$.ajax({
+				type:"post",
+				url:"${contextPath}/delContent.do",
+				dataType:"text",
+				contentType:"application/json",
+				data:{contentNO:str},
+				success:function(data){
+					if(data=="성공"){
+						alert('글을 삭제하였습니다.');
+						location.href="${contextPath}/boardmain.do?loginId=${loginId}";
+					}
+				},
+				error(data){
+					
+				}
+			});
+			
 		} 
 	}
 	

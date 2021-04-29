@@ -13,10 +13,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 	function fn_mod(){
+		CKupdate();
 		var frm = document.getElementById('frm');
 		var title = document.getElementById('title');
 		var content = document.getElementById('content');
-		
+		var contentNO= $("#contentNO").val();
 		if(title.value==""){
 			alert('제목을 입력해주세요');
 			title.focus();
@@ -24,10 +25,32 @@
 			alert('내용을 입력해주세요');
 			content.focus();
 		}else{
-			frm.method="post";
-			frm.action="${contextPath}/modContent.do";
-			frm.submit();
+			var formdata ={
+					"id":"${loginId}",
+					"title":$("#title").val(),
+					"content":$("#content").val()
+			};
+			$.ajax({
+				type:"post",
+				url:"${contextPath}/modContent.do",
+				contentType:"application/json",
+				dataType:"text",
+				data:JSON.stringify(formdata),
+				success:function(data){
+					if(data=="성공"){
+						alert('수정 완료했습니다.');
+						location.href="${contextPath}/viewForm.do?contentNO="+contentNO;
+					}
+				},error(data){
+					
+				}
+			});
 		}
+	}
+	//ajax 전송시 CK 에디터 정보를 다시 변환하여 줘야한다.
+	function CKupdate(){
+	    for ( instance in CKEDITOR.instances )
+	        CKEDITOR.instances[instance].updateElement();
 	}
 </script>
 </head>
@@ -46,7 +69,7 @@
 				<form id="frm" class="form-group" > 
 					<div class="form-group">
 						<span class="form-span">제목</span>
-						<input type="hidden" name = "contentNO" value="${board.contentNO}"/>
+						<input type="hidden" id="contentNO" name = "contentNO" value="${board.contentNO}"/>
 					</div>
 					<div class="form-group">
 					<input class="form-control" type="text" name="title" id="title" value="${board.title }"/>
