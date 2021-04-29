@@ -1,5 +1,8 @@
 # blog
-# SPRING FRAMEWORK  MVC MODEL 2 BLOG
+## SPRING FRAMEWORK  MVC MODEL 2 BLOG
+----------------------
+
+
 
 ### 프로젝트 계획이유
 -----------------------
