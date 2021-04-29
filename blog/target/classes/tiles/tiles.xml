@@ -40,9 +40,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/mypage/pwdcheck.jsp"/>
 	</definition>
 	<!-- 회원정보 변경 페이지 -->
-	<definition name="modmember" extends="baseLayout">
+	<definition name="modMemberForm" extends="baseLayout">
 		<put-attribute name="title" value="회원정보 변경"/>
-		<put-attribute name="body" value="/WEB-INF/views/mypage/modmember.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/mypage/modMemberForm.jsp"/>
 	</definition>
 	
 	<definition name="boardmain" extends="baseLayout">

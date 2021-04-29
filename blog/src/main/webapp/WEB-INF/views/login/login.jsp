@@ -27,9 +27,33 @@ window.onload=function(){
 			alert('PWD를 입력해주세요');
 			pwd.focus();
 		}else{
-			frm.action="${contextPath}/loginCheck.do";
-			frm.method="post";
-			frm.submit();
+			var member={
+					id:$("#id").val(),
+					pwd:$("#pwd").val()
+
+			};
+			$.ajax({
+				type:"post",
+				url:"${contextPath}/loginCheck.do",
+				dataType:"text",
+				contentType:"application/json",
+				data:JSON.stringify(member),
+				success:function(data){
+					if(data=="성공"){
+						
+						alert($("#id").val()+"님 환영합니다.");
+						location.href="${contextPath}/main.do";
+					}else{
+						alert('로그인 실패 아이디와 비밀번호를 확인하세요');
+						$("#id").val("");
+						$("#pwd").val("");
+					}
+				},error:function(data){
+					alert("로그인 중 오류 발생!!! 관리자에게 문의하세요");
+				},complete:function(data){
+					
+				}
+			});
 		}
 	}
 	function fn_cancel(){
@@ -47,7 +71,7 @@ window.onload=function(){
 				</div>
 				<div style="text-align: center;margin: 15px;">
 					<h3>로그인</h3>
-					<form name="loginFrm" class="form-group" > 
+					<form name="loginFrm" id="frm" class="form-group" > 
 				<div class="form-group">
 					<img src="${contextPath}/resources/image/user.png" id="formIcon">
 					<span class="form-span">I D</span>

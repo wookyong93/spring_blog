@@ -22,131 +22,7 @@
    			location.href="${contextPath}/main.do";
    		}
    	}
-    //ID 조건식 충족 여부 확인
-    function fn_idchk(){
-    	//ID 입력시 영문 숫자조합 필수
-    	var idRule = /^[A-Za-z0-9]{5,}$/;
-    	//ID 조건이 맞는지 출력할 div 호출
-    	var idcall = document.getElementById('idcall');
-    	if(idRule.test(document.getElementById('id').value)){
-    		idcall.innerHTML ="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>아이디 조건에 맞습니다."
-    	}else{
-    		idcall.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>아이디는 영문 +숫자 조합으로 5글자 이상 사용해야합니다.";
-    	}
-    	//해당태그에 추가 
-    }
-  //ID 중복체크 
-    function fn_idCheck(){
-    	//버튼 클릭시 실행
-    	var id = document.getElementById('id');
-    	var frm=document.getElementById('frm');
-    	if(id.value==""){
-    		//id 값 공란 제거
-    		alert('id를 입력해주세요');
-    		id.focus();
-    	}else{
-    		//controller 전송하여 검사
-    		frm.method="post";
-    		frm.action="${contextPath}/idCheck.do"; 
-    		frm.submit();
-    	}
-    }
-    //페스워드가 형식에 맞는지 확인하는 함수
-    function fn_passwordCheck(){
-    	//패스워드 형식 지정
-    	var password=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
-    	var pw = document.getElementById('pw');
-    	var checkpwd = document.getElementById('checkpwd');
-    	if(!password.test(document.getElementById('pwd').value)){
-    		pw.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>영어,숫자,특수문자가 1개씩 포함한 8글자 이상이어야합니다.";
-		
-    	}else{
-    		
-  			pw.innerHTML ="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>사용가능한 비밀번호입니다";
-		
-  			checkpwd.value ="ok";
-    	}
-    	//패스워드 확인 결과 출력
-    }
-    //PW 와 PWCHECK 가 같은지 화인하는 함수
-    function fn_passwordsame(){
-    	var pwd = document.getElementById('pwd');
-    	var pwdchk = document.getElementById('pwdchk');
-    	var pwsame = document.getElementById('pwsame');
-    	var checkpwdchk = document.getElementById('checkpwdchk');
-    	if(pwd == ""){
-    		alert('PW를 입력해주세요');
-    	}else if(pwd.value == pwdchk.value){
-    		pwsame.innerHTML = "<img src='${contextPath}/resources/image/check.png' style='width:20px;'>암호가 동일합니다.";
-		
-    		checkpwdchk.value ="ok";
-    	}else{
-    		pwsame.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>암호가 다릅니다."
-			
-    	}
-    }
-    //주소 입력해주는 함수
-    function fn_address(){
-    	var postcode = document.getElementById('postcode').value;
-    	var roadAddress = document.getElementById('roadAddress').value;
-    	var detailAddress = document.getElementById('detailAddress').value;
-    	var extraAddress = document.getElementById('extraAddress').value;
-    	var address = document.getElementById('address');
-    	address.value = "["+postcode+"]"+roadAddress+", "+detailAddress+extraAddress;
-    	console.log(address);
-    }
-    //이메일 형식 확인하는 함수
-    function fn_email(){
-    	var emailRule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    	var emailcall = document.getElementById('emailcall');
-    	var checkemail = document.getElementById('checkemail');
-    	if(emailRule.test(document.getElementById('email').value)){
-    		emailcall.innerHTML="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>사용가능한 이메일 형식입니다.";
-			
-    		checkemail.value ="ok";
-    	}else{
-    		emailcall.innerHTML="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>이메일형식이 틀립니다.";
-			
-    	}
-    }
     
-    //회원가입 버튼클릭시 실행
-    function fn_join(){
-    	var frm = document.getElementById('frm');
-    	var id = document.getElementById('id');
-    	var pwd = document.getElementById('pwd');
-    	var name = document.getElementById('name');
-    	var email = document.getElementById('email');
-    	var address = document.getElementById('address').value;
-    	var check = document.getElementById('check').value;
-    	var checkpwd = document.getElementById('checkpwd').value;
-    	var checkpwdchk = document.getElementById('checkpwdchk').value;
-    	var checkemail = document.getElementById('checkemail').value;
-    	 if(id.value==""){
-    		alert('ID는 필수입력입니다');
-    	}else if(pwd.value==""){
-    		alert('pw는 필수입력입니다');
-    	}else if(checkpwd ==""){
-    		alert('입력하신 PW 형식이 잘못되었습니다.');
-    	}else if(checkpwdchk ==""){
-    		alert('입력하신 PWCHECK가 PW와 같은지 확인하세요');
-    	}else if(name.value==""){
-    		alert('이름은 필수입력입니다');
-    	}else if(email.vlaue==""){
-    		alert('email은 필수입력입니다');
-    	}else if(checkemail==""){
-    		alert('email형식을 확인해주세요');	
-    	}else if(address ==""){
-    		alert('주소는 필수입력입니다');
-    	}else if(check !="ok"){
-    		alert('중복체크를 해주세요');
-    	}else {
-    		frm.method="post";
-    		frm.action="${contextPath}/addMember.do";
-    		frm.submit();
-    	}
-    	 //해당 조건 맞을시 해당 action 실행;
-    }
 </script>
 </head>
 <body>
@@ -159,22 +35,15 @@
 				</div>
 				<div style="text-align: center;margin: 15px;">
 					<h3>회원가입</h3>
-				<form id="frm" class="form-group" > 
+				<form id="frm" name="frm"class="form-group" > 
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/user.png" id="formIcon">
 						<span class="form-span">I D</span>
 					</div>
 					<div class="input-group">
-					<c:if test="${okId == null}">
-					<%--중복체크된 아이디가 존재하지 않을 경우 --%> 
 						<input class="form-control" type="text" name="id" id="id" onchange="fn_idchk()" placeholder="ID"/>
-						<input type="hidden" id="check" value="no"/>
-					</c:if>
-					<c:if test="${okId != null}">
-					<%--중복체크된 아이디가 존재할 경우 --%>
-						<input class="form-control" type="text" name="id" id="id" onchange="fn_idchk()" value="${okId}"/>
-						<input type="hidden" id="check" value="ok"/>
-					</c:if>
+						<input type="hidden" id="check" value=""/>
+						<input type="hidden" id="rulechk" value="">
 						<span class="input-group-btn">
 							<button type="button" class="form-btn-check" id="idcheck" onclick="fn_idCheck()" >
 							중복체크
@@ -234,4 +103,175 @@
 		</div>
 	</div>
 </body>
+<script>
+//ID 조건식 충족 여부 확인
+function fn_idchk(){
+	//ID 입력시 영문 숫자조합 필수
+	var idRule = /^[a-zA-Z]+[a-zA-Z0-9]{4,11}$/;
+	//ID 조건이 맞는지 출력할 div 호출
+	var idcall = document.getElementById('idcall');
+	var rulechk=$("#rulechk").val();
+	if(idRule.test(document.getElementById('id').value)){
+		idcall.innerHTML ="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>아이디 조건에 맞습니다."
+		$("#rulechk").val("ok");
+		
+	}else{
+		idcall.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>아이디는 영문 +숫자 조합으로 5글자 이상 10이하로 사용해야합니다.";
+		$("#rulechk").val("no");
+	}
+	//해당태그에 추가 
+}
+//ID 중복체크 
+function fn_idCheck(){
+	//버튼 클릭시 실행
+	var id = document.getElementById('id');
+	var frm=document.getElementById('frm');
+	var idok=$('#rulechk').val();
+	if(id.value==""){
+		//id 값 공란 제거
+		alert('id를 입력해주세요');
+		id.focus();
+		//아이디 형식 체크
+	}else if(idok=='no' || idok==''){
+		alert('아이디 형식이 맞지 않습니다.');
+	}else{
+		//controller 전송하여 검사
+		$.ajax({
+			type:"post",
+			url:"${contextPath}/idCheck.do",
+			datatype:"text",
+ 			data:{id:$("#id").val()},
+			success:function(data){
+				if(data=="성공"){
+					alert('사용가능 아이디인니다.');
+					$('#check').val("ok");
+				}else{
+					alert('중복된 아이디입니다.');
+					$("#id").val("");
+					$("#idcall").empty();
+					$('#check').val("ok");
+				}
+			},error:function(data){
+				
+			}
+		});
+	}
+}
+//페스워드가 형식에 맞는지 확인하는 함수
+function fn_passwordCheck(){
+	//패스워드 형식 지정
+	var password=/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+	var pw = document.getElementById('pw');
+	var checkpwd = document.getElementById('checkpwd');
+	if(!password.test(document.getElementById('pwd').value)){
+		pw.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>영어,숫자,특수문자가 1개씩 포함한 8글자 이상이어야합니다.";
+	
+	}else{
+		
+			pw.innerHTML ="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>사용가능한 비밀번호입니다";
+	
+			checkpwd.value ="ok";
+	}
+	//패스워드 확인 결과 출력
+}
+//PW 와 PWCHECK 가 같은지 화인하는 함수
+function fn_passwordsame(){
+	var pwd = document.getElementById('pwd');
+	var pwdchk = document.getElementById('pwdchk');
+	var pwsame = document.getElementById('pwsame');
+	var checkpwdchk = document.getElementById('checkpwdchk');
+	if(pwd == ""){
+		alert('PW를 입력해주세요');
+	}else if(pwd.value == pwdchk.value){
+		pwsame.innerHTML = "<img src='${contextPath}/resources/image/check.png' style='width:20px;'>암호가 동일합니다.";
+	
+		checkpwdchk.value ="ok";
+	}else{
+		pwsame.innerHTML ="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>암호가 다릅니다."
+		
+	}
+}
+//주소 입력해주는 함수
+function fn_address(){
+	var postcode = document.getElementById('postcode').value;
+	var roadAddress = document.getElementById('roadAddress').value;
+	var detailAddress = document.getElementById('detailAddress').value;
+	var extraAddress = document.getElementById('extraAddress').value;
+	var address = document.getElementById('address');
+	address.value = "["+postcode+"]"+roadAddress+", "+detailAddress+extraAddress;
+}
+//이메일 형식 확인하는 함수
+function fn_email(){
+	var emailRule =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	var emailcall = document.getElementById('emailcall');
+	var checkemail = document.getElementById('checkemail');
+	if(emailRule.test(document.getElementById('email').value)){
+		emailcall.innerHTML="<img src='${contextPath}/resources/image/check.png' style='width:20px;'>사용가능한 이메일 형식입니다.";
+		
+		checkemail.value ="ok";
+	}else{
+		emailcall.innerHTML="<img src='${contextPath}/resources/image/close.png' style='width:20px;'>이메일형식이 틀립니다.";
+		
+	}
+}
+
+//회원가입 버튼클릭시 실행
+function fn_join(){
+	
+	var frm = document.getElementById('frm');
+	var id = document.getElementById('id');
+	var pwd = document.getElementById('pwd');
+	var name = document.getElementById('name');
+	var email = document.getElementById('email');
+	var address = document.getElementById('address').value;
+	var check = document.getElementById('check').value;
+	var checkpwd = document.getElementById('checkpwd').value;
+	var checkpwdchk = document.getElementById('checkpwdchk').value;
+	var checkemail = document.getElementById('checkemail').value;
+	 if(id.value==""){
+		alert('ID는 필수입력입니다');
+	}else if(pwd.value==""){
+		alert('pw는 필수입력입니다');
+	}else if(checkpwd ==""){
+		alert('입력하신 PW 형식이 잘못되었습니다.');
+	}else if(checkpwdchk ==""){
+		alert('입력하신 PWCHECK가 PW와 같은지 확인하세요');
+	}else if(name.value==""){
+		alert('이름은 필수입력입니다');
+	}else if(email.vlaue==""){
+		alert('email은 필수입력입니다');
+	}else if(checkemail==""){
+		alert('email형식을 확인해주세요');	
+	}else if(address ==""){
+		alert('주소는 필수입력입니다');
+	}else if(check !="ok"){
+		alert('중복체크를 해주세요');
+	}else {
+		var formdata = {"id":$("#id").val(),
+			"pwd":$("#pwd").val(),
+			"name":$("#name").val(),
+			"email":$("#email").val(),
+			"address":$("#address").val()
+		};
+		console.log(JSON.stringify(formdata))
+		$.ajax({
+			type:"put",
+			url:"${contextPath}/addMember.do",
+			contentType:"application/json",
+			dataType:"text",
+			data:JSON.stringify(formdata), 
+			success:function(data){
+				if(data=="성공"){
+					alert(id.value+'님 가입을 환영합니다.');
+					location.href="${contextPath}/login.do";
+				}
+			},error:function(data){
+				alert(data);
+			}
+			
+		});
+	}
+	 //해당 조건 맞을시 해당 action 실행;
+}
+</script>
 </html>

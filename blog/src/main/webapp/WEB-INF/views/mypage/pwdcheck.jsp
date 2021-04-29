@@ -16,9 +16,31 @@
 			alert('암호를 입력해주세요');
 			pwd.focus();
 		}else{
-			frm.method="post";
-			frm.action = "${contextPath}/pwdchk.do";
-			frm.submit();
+			var formdata={"id":$("#id").val(),
+					"pwd":$("#pwd").val()};
+			$.ajax({
+				type:"post",
+				url:"${contextPath}/pwdchk.do",
+				contentType:"application/json",
+				dataType:"text",
+				data:JSON.stringify(formdata),
+				success:function(data){
+					if(data == "성공"){
+						alert('회원정보 수정 페이지로 이동합니다');
+						location.href="${contextPath}/modMemberForm.do?loginId=${loginId}";
+					}else{
+						var con = confirm('비밀번호가 틀렸습니다!\r\n 재입력하시겠습니까?\r\n(취소 입력시 마이페이지로 이동됩니다.)');
+						if(con==true){
+							$("#pwd").val("");
+						}else{
+							location.href="${contextPath}/mypage.do?loginId=${loginId}";
+						}
+					}
+				},error:function(data){
+					
+				}
+				
+			});
 		}
 	}
 </script>
@@ -36,7 +58,7 @@
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/padlock.png" id="formIcon">
 						<span class="form-span">현재 비밀번호</span>
-						<input type="hidden" value="${loginId}" name="id"/>
+						<input type="hidden" value="${loginId}" id="id" name="id"/>
 					</div>
 					<div class="input-group">
 						<input class="form-control" type="password" name="pwd" id="pwd"/>

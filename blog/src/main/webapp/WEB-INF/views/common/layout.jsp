@@ -19,6 +19,7 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
   <link href="${contextPath}/resources/css/clean-blog.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="${contextPath}/resources/js/member.js"></script>
 <style>
 	.alerter{
 		margin:2px;

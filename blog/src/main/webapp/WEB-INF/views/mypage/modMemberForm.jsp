@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>회원정보 변경 페이지</title>
 <script src="${contextPath}/resources/js/member.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -87,12 +87,34 @@ function fn_passwordCheck(){
 			alert('이름은 필수입력입니다');
 		}else if(email.vlaue==""){
 			alert('email은 필수입력입니다');
+		}else if(email.value=="${originEmail}" && checkemail != "ok"){
+			alert('eamil 형식을 확인해주세요');
 		}else if(address ==""){
 			alert('주소는 필수입력입니다');
 		}else{
-			frm.method="post";
-			frm.action="${contextPath}/modMember.do";
-			frm.submit();
+			var formdata={
+				"id":$("#id").val(),
+				"pwd":$("#pwd").val(),
+				"name":$("#name").val(),
+				"email":$("#email").val(),
+				"address":$("#address").val(),
+			};
+			$.ajax({
+				type:"put",
+				url:"${contextPath}/modMember.do",
+				datatype:"text",
+				contentType:"application/json",
+				data:JSON.stringify(formdata),
+				success:function(data){
+					if(data=="성공"){
+						alert('회원 정보 수정 성공!');
+						location.href="${contextPath}/mypage.do?loginId="+$("#id").val();
+					}
+				},error:function(data){
+					alert(data);
+				}
+				
+			});
 		}
 	}
 	
@@ -101,10 +123,23 @@ function fn_passwordCheck(){
 		var con = confirm('회원 탈퇴하시겠습니까?');
 		if(con==true){
 			var command = prompt('회원가입을 원할시 동일한 문구를 쳐주세요\n(회원탈퇴에 동의합니다.)');
+			var _id = "${loginId}";
 			if(command == '회원탈퇴에 동의합니다.'){
-			frm.method="post";
-			frm.action="${contextPath}/delMember.do";
-			frm.submit();
+				$.ajax({
+					type:"delete",
+					url:"${contextPath}/delMember.do",
+					dataType:"text",
+					contentType:"application/json",
+					data:{"id":_id},
+					success:function(data){
+						if(data=="성공"){
+							alert('그동안 이용해 주셔서 감사합니다');
+							location.href="${contextPath}/main.do";
+						}
+					},error:function(data){
+						
+					}
+				});
 			}
 		}
 	}
@@ -144,12 +179,13 @@ function fn_passwordCheck(){
 					<div id="pwsame" class="alerter"></div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">이름</span>
-						<input class="form-control" type="text" name="name" id="name" value="${member.name}" /> 
+						<input class="form-control" type="text" name="name" id="name" value="${member.name}" />
 					</div>
 					<div class="form-group">
 						<img src="${contextPath}/resources/image/name.png" id="formIcon"><span class="form-span">E-mail</span>
 						<input class="form-control" type="email" name="email"  id="email"
 						onchange="fn_email()" value="${member.email}"/> 
+						<c:set var="originEmail" value="${member.email}"/>
 						<input type="hidden" id="checkemail" value=""/>
 					</div>
 					<div id="emailcall" class="alerter"></div>
@@ -171,7 +207,6 @@ function fn_passwordCheck(){
 						<span id="guide" style="color:#999;display:none"></span>
 						<input type="text" class="form-control" style="margin-bottom:10px;" id="detailAddress" placeholder="상세주소" onchange="fn_address()">
 						<input type="text" class="form-control" style="margin-bottom:10px;" id="extraAddress" placeholder="참고항목">
-						<input type="hidden" id="address" name="address"/>
 					</div>
 					<div class="form-group">	
 						<button type="button" onclick="fn_modMember()" class="form-btn-join" style="border-color: lightgreen;width: 150px;" >
@@ -192,6 +227,6 @@ function fn_passwordCheck(){
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 </body>
 </html>
