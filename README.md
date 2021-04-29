@@ -58,7 +58,7 @@
   - MYBATIS
   - JQUERY
   - BOOTSTRAP
-  -SPRING-Security
+  - SPRING-Security
 ## 개발 후기 
 ```
 수업중 이해가 잘안되거나 배우지 못 한 부분을 
