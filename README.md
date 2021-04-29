@@ -24,3 +24,6 @@ REST API , KakaoMap API , juso API
 -조회수 높은 게시글 목록
 -게시글 검색기능
 -다른 페이지 게시글 조회 
+aws EC2 를 이용한 웹 호스팅 
+-site 
+http://3.37.33.62/main.do
