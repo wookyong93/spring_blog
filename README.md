@@ -1,12 +1,25 @@
-# spring_blog
-스프링 MVC 모델2페턴을 이용한 BLOG
+# blog
+SPRING FRAMEWORK  MVC MODEL 2 BLOG
 
-# 작업툴
-eclipse-jee-2020.12
+### 프로젝트 계획이유
+-----------------------
+  국비지원 훈련을 약 5개월 동안 수강하면서 제가 배운 기술들에 대한 부족한점을 파악하기 위해 계획을 하였    습니다.
+
+
+## ASW 서버
 apache tomcat 9.0.43
-Spring 4.1.1 ,mybatis 3.4.6, javaSE 1.8,
 
-REST API , KakaoMap API , juso API
+## 개발도구
+Spring 4.1.1 RELESE
+BootStrap3
+
+## 사용언어 
+
+JAVA / JSP / HTML / CSS / JS
+
+## 사용 API
+
+REST API , KakaoMap API , juso API, MYBATIS , TILES , JQUERY ,  JACKSON
 
 
 기능 소개 
