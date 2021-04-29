@@ -11,8 +11,8 @@ SPRING FRAMEWORK  MVC MODEL 2 BLOG
   나만의 일기등을 작성 할 수 있는 블로그형 게시판을 계획하게 되었습니다.
 ```
 
-## ASW 서버
-apache tomcat 9.0.43
+## 호스팅 PAGE
+링크 : http://3.37.33.62/main.do
 
 ## 개발도구
 Spring 4.1.1 RELESE
