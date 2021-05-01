@@ -16,7 +16,8 @@
 ## 호스팅 PAGE
 AWS EC2 RDS 로 서버 호스팅 했으나 비용문제로 인한 호스팅 취소 
 아래 링크로 접속이 가능합니다.
-링크 : http://it-kys.iptime.org/ezen/2020/blog/main.do
+
+- 링크 : http://it-kys.iptime.org/ezen/2020/blog/main.do
 ## 사이트 이용 영상
 
 [![프로젝트 시연 영상](https://img.youtube.com/vi/8U7pdwsjx_c/0.jpg)](https://youtu.be/8U7pdwsjx_c)
