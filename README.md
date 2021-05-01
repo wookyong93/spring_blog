@@ -14,7 +14,7 @@
 ```
 
 ## 호스팅 PAGE
-AWS EC2 RDS 로 서버 호스팅 했으나 비용문제로 인한 호스팅 취소 
+AWS EC2 RDS 로 서버 호스팅을 진행 했으나 비용문제로 인한 호스팅 취소 
 아래 링크로 접속이 가능합니다.
 
 - 링크 : http://it-kys.iptime.org/ezen/2020/blog/main.do
